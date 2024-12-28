@@ -1,3 +1,81 @@
-<p>
-  form-prenotazione works!
-</p>
+<ion-content class="ion-padding">
+
+  <form action="" [formGroup]="prenotazioneForm" (ngSubmit)="submitAppointment()">
+
+    @if(!nextSection){
+    <ion-list>
+      <ion-item>
+        <ion-select placeholder="Seleziona un Servizio" formControlName="service_id">
+          <div slot="label">Servizio <ion-text color="danger">(Required)</ion-text></div>
+          <ion-select-option value="1">Taglio</ion-select-option>
+          <ion-select-option value="2">Barba</ion-select-option>
+          <ion-select-option value="3">Shampoo</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+        <ion-select placeholder="Incaricato" formControlName="staff_id">
+          <div slot="label">Incaricato <ion-text color="danger">(Required)</ion-text></div>
+          <ion-select-option value="1">Vincenzo Daì</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-datetime formControlName="start_date"></ion-datetime>
+
+    }@else{
+
+
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" value="Ciccio Pasticcio" formControlName="full_name">
+          <div slot="label">Nome e Cognome <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" value="3333333333" formControlName="phone">
+          <div slot="label">Telefono <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" value="hi@ionic.io" formControlName="email">
+          <div slot="label">Email <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+        <ion-textarea aria-label="Comments" value="Note aggiuntive" formControlName="notes">Note</ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <!-- Bottone Prenota -->
+    <div style="flex-shrink: 1;">
+      <ion-button type="submit" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
+        color="dark">PRENOTA</ion-button>
+    </div>}
+
+  </form>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <div style="display: flex; justify-content: space-around;">
+        <ion-button (click)="goBack()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
+          color="danger">INDIETRO</ion-button>
+        <ion-button (click)="showNextSection()" [disabled]="nextSection"
+          style="margin-bottom: 10px; margin-top: 16px; width: 80%;" color="danger">AVANTI</ion-button>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
