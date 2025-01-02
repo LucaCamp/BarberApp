@@ -6,6 +6,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormPrenotazioneComponent } from './form-prenotazione/form-prenotazione.component';
 import { IonicModule } from '@ionic/angular';
+import {  provideHttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,8 +18,7 @@ import { IonicModule } from '@ionic/angular';
     PrenotazioneRoutingModule,
     RxReactiveFormsModule,
     ReactiveFormsModule,
-    IonicModule
-
-  ]
+    IonicModule,
+  ],
 })
 export class PrenotazioneModule { }

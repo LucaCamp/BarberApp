@@ -3,7 +3,8 @@
   <form action="" [formGroup]="prenotazioneForm" (ngSubmit)="submitAppointment()">
 
     @if(!nextSection){
-    <ion-list>
+     
+    <ion-list class="mt6">
       <ion-item>
         <ion-select placeholder="Seleziona un Servizio" formControlName="service_id">
           <div slot="label">Servizio <ion-text color="danger">(Required)</ion-text></div>
@@ -14,7 +15,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-list>
+    <ion-list class="mt6">
       <ion-item>
         <ion-select placeholder="Incaricato" formControlName="staff_id">
           <div slot="label">Incaricato <ion-text color="danger">(Required)</ion-text></div>
@@ -22,20 +23,27 @@
         </ion-select>
       </ion-item>
     </ion-list>
-    <ion-datetime formControlName="start_date"></ion-datetime>
-
+    <div class="justify-content-center"><ion-datetime (ionChange)="setDate()" [isDateEnabled]="isWeekday" minuteValues="0,15,30,45" formControlName="start_date" class="mt6"></ion-datetime></div>
+  
     }@else{
 
 
-    <ion-list>
+    <ion-list class="mt6">
       <ion-item>
-        <ion-input labelPlacement="floating" value="Ciccio Pasticcio" formControlName="full_name">
-          <div slot="label">Nome e Cognome <ion-text color="danger">(Required)</ion-text></div>
+        <ion-input labelPlacement="floating" value="Ciccio" formControlName="first_name">
+          <div slot="label">Nome<ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list class="mt6">
+      <ion-item>
+        <ion-input labelPlacement="floating" value="Pasticcio" formControlName="last_name">
+          <div slot="label">Cognome <ion-text color="danger">(Required)</ion-text></div>
         </ion-input>
       </ion-item>
     </ion-list>
 
-    <ion-list>
+    <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="3333333333" formControlName="phone">
           <div slot="label">Telefono <ion-text color="danger">(Required)</ion-text></div>
@@ -43,7 +51,7 @@
       </ion-item>
     </ion-list>
 
-    <ion-list>
+    <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="hi@ionic.io" formControlName="email">
           <div slot="label">Email <ion-text color="danger">(Required)</ion-text></div>
@@ -51,15 +59,15 @@
       </ion-item>
     </ion-list>
 
-    <ion-list>
+    <ion-list class="mt6">
       <ion-item>
         <ion-textarea aria-label="Comments" value="Note aggiuntive" formControlName="notes">Note</ion-textarea>
       </ion-item>
     </ion-list>
 
     <!-- Bottone Prenota -->
-    <div style="flex-shrink: 1;">
-      <ion-button type="submit" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
+    <div class="mt6 justify-content-center" >
+      <ion-button type="submit" (click)="setFullName()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
         color="dark">PRENOTA</ion-button>
     </div>}
 
