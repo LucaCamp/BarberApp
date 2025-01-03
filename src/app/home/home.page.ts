@@ -9,9 +9,12 @@ import { Component } from '@angular/core';
 export class HomePage {
 
   images = [
-    'assets/img1.jpg',
-    'assets/img2.jpg',
-    'assets/img3.jpg',
+    {path:'assets/taglio_dai_barber_6.jpg'},
+    {path:'assets/taglio_dai_barber_4.jpg'},
+    {path:'assets/taglio_dai_barber_3.jpg'},
+    {path:'assets/taglio_dai_barber_5.jpg'},
+    {path:'assets/taglio_dai_barber_7.jpg'},
+    {path:'assets/taglio_dai_barber_8.jpg'},
   ];
 
   constructor() { }

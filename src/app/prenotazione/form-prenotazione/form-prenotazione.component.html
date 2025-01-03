@@ -1,3 +1,8 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Prenotazione</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content class="ion-padding">
 
   <form action="" [formGroup]="prenotazioneForm" (ngSubmit)="submitAppointment()">
@@ -6,8 +11,7 @@
      
     <ion-list class="mt6">
       <ion-item>
-        <ion-select placeholder="Seleziona un Servizio" formControlName="service_id">
-          <div slot="label">Servizio <ion-text color="danger">(Required)</ion-text></div>
+        <ion-select placeholder="Seleziona un servizio" formControlName="service_id" >
           <ion-select-option value="1">Taglio</ion-select-option>
           <ion-select-option value="2">Barba</ion-select-option>
           <ion-select-option value="3">Shampoo</ion-select-option>
@@ -17,8 +21,7 @@
 
     <ion-list class="mt6">
       <ion-item>
-        <ion-select placeholder="Incaricato" formControlName="staff_id">
-          <div slot="label">Incaricato <ion-text color="danger">(Required)</ion-text></div>
+        <ion-select placeholder="Seleziona un parrucchiere" formControlName="staff_id">
           <ion-select-option value="1">Vincenzo Daì</ion-select-option>
         </ion-select>
       </ion-item>
@@ -31,14 +34,14 @@
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="Ciccio" formControlName="first_name">
-          <div slot="label">Nome<ion-text color="danger">(Required)</ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Nome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
         </ion-input>
       </ion-item>
     </ion-list>
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="Pasticcio" formControlName="last_name">
-          <div slot="label">Cognome <ion-text color="danger">(Required)</ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Cognome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
         </ion-input>
       </ion-item>
     </ion-list>
@@ -46,7 +49,7 @@
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="3333333333" formControlName="phone">
-          <div slot="label">Telefono <ion-text color="danger">(Required)</ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Telefono</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
         </ion-input>
       </ion-item>
     </ion-list>
@@ -54,7 +57,7 @@
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="hi@ionic.io" formControlName="email">
-          <div slot="label">Email <ion-text color="danger">(Required)</ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Email</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
         </ion-input>
       </ion-item>
     </ion-list>

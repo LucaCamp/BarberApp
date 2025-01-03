@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { IonButton, IonContent, IonHeader,  IonTitle, IonToolbar } from '@ionic/angular';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -16,7 +17,7 @@ import { CommonModule } from '@angular/common';
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [provideHttpClient(),{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy  }],
   bootstrap: [AppComponent],

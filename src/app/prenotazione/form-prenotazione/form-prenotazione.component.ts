@@ -38,7 +38,10 @@ export class FormPrenotazioneComponent implements OnInit {
   
 
   setEndDate(){
-    this.prenotazione.end_date = this.prenotazione.start_date 
+  this.prenotazione.start_date = new Date(this.prenotazione.start_date)
+  this.prenotazione.end_date = new Date(this.prenotazione.start_date)
+  this.prenotazione.end_date.setUTCMinutes(this.prenotazione.start_date.getUTCMinutes() + 30)
+  console.log(this.prenotazione.start_date.toISOString() + " " + this.prenotazione.end_date.toISOString())
   }
 
   setFullName(){
@@ -46,23 +49,10 @@ export class FormPrenotazioneComponent implements OnInit {
   }
 setDate(){
   this.setEndDate();
- this.prenotazione.start_date = this.formatDateToString( new Date(this.prenotazione.start_date));
- this.prenotazione.end_date = this.formatDateToString(new Date (this.prenotazione.end_date))
+//  this.prenotazione.start_date = this.formatDateToString( new Date(this.prenotazione.start_date));
+//  this.prenotazione.end_date = this.formatDateToString(new Date (this.prenotazione.end_date))
 }
   
-  formatDateToString(date: Date): string {
-    // Estrai le informazioni dalla data
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // I mesi vanno da 0 a 11
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-  
-    // Restituisci la data nel formato "yyyy-MM-dd HH:mm:ss"
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }
-
   ngOnInit() { }
 
   goBack() {
@@ -80,7 +70,7 @@ setDate(){
 
   submitAppointment() {
     console.log(this.prenotazione)
-    this.prenotazioneService.createAppointment(this.prenotazione).subscribe()
+    // this.prenotazioneService.createAppointment(this.prenotazione).subscribe()
   }
 }
 

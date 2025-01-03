@@ -5,7 +5,7 @@ import { PrenotazioneRoutingModule } from './prenotazione-routing.module';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormPrenotazioneComponent } from './form-prenotazione/form-prenotazione.component';
-import { IonicModule } from '@ionic/angular';
+import { IonHeader, IonicModule, IonItem, IonList, IonNavLink, IonSelect, IonSelectOption } from '@ionic/angular';
 import {  provideHttpClient } from '@angular/common/http';
 
 
