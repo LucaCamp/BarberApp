@@ -1,17 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Prenotazione</ion-title>
+    <ion-title style="text-align: center;">Prenota il tuo appuntamento</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
 
   <form action="" [formGroup]="prenotazioneForm" (ngSubmit)="submitAppointment()">
 
-    @if(!nextSection){
-     
+    @if(currentSection === 1){
+    <!-- LOGO -->
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 15px; flex-shrink: 1;">
+      <ion-img src="assets/logo-daibarber-black.png" alt="Logo"
+        style="width: 150px; height: auto; margin-bottom: 20px; background-color: transparent;"></ion-img>
+      <p style="margin-left: 20px; margin-right: 20px;">Investi il giusto tempo per prenderti cura di te stesso</p>
+    </div>
+
+    <!-- PRIMA SEZIONE FORM -->
     <ion-list class="mt6">
       <ion-item>
-        <ion-select placeholder="Seleziona un servizio" formControlName="service_id" >
+        <ion-select placeholder="Seleziona un servizio" formControlName="service_id">
           <ion-select-option value="1">Taglio</ion-select-option>
           <ion-select-option value="2">Barba</ion-select-option>
           <ion-select-option value="3">Shampoo</ion-select-option>
@@ -26,22 +33,43 @@
         </ion-select>
       </ion-item>
     </ion-list>
-    <div class="justify-content-center"><ion-datetime (ionChange)="setDate()" [isDateEnabled]="isWeekday" minuteValues="0,15,30,45" formControlName="start_date" class="mt6"></ion-datetime></div>
-  
-    }@else{
+    }@else if (currentSection === 2) {
+
+    <p style="text-align: center;">Seleziona una tra le fasce orarie disponibili per fissare un incontro.</p>
+    <div class="justify-content-center"><ion-datetime presentation="date" (ionChange)="setDate()"
+        [isDateEnabled]="isWeekday" minuteValues="0,15,30,45" formControlName="start_date"></ion-datetime>
+    </div>
+
+
+    <ion-list>
+      <ion-radio-group style="display: flex; flex-wrap: wrap; justify-content: center;" [compareWith]="compareWith"
+        (ionChange)="handleChange($event)">
+        @for (food of foods; track food.id) {
+        <ion-item style="width: 45%; margin-right: auto; ">
+          <ion-radio [disabled]="food.id === 1" [value]="food">{{ food.name }}</ion-radio>
+        </ion-item>
+        }
+      </ion-radio-group>
+    </ion-list>
+
+    }@else if (currentSection === 3){
 
 
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="Ciccio" formControlName="first_name">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Nome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+            <div>Nome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+          </div>
         </ion-input>
       </ion-item>
     </ion-list>
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="Pasticcio" formControlName="last_name">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Cognome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+            <div>Cognome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+          </div>
         </ion-input>
       </ion-item>
     </ion-list>
@@ -49,7 +77,9 @@
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="3333333333" formControlName="phone">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Telefono</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+            <div>Telefono</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+          </div>
         </ion-input>
       </ion-item>
     </ion-list>
@@ -57,7 +87,9 @@
     <ion-list class="mt6">
       <ion-item>
         <ion-input labelPlacement="floating" value="hi@ionic.io" formControlName="email">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label"><div>Email</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text></div>
+          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+            <div>Email</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+          </div>
         </ion-input>
       </ion-item>
     </ion-list>
@@ -67,13 +99,19 @@
         <ion-textarea aria-label="Comments" value="Note aggiuntive" formControlName="notes">Note</ion-textarea>
       </ion-item>
     </ion-list>
+    } @else if (currentSection === 4) {
+
+
+    <ion-text>
+      <h3 class="ion-text-start" style="font-weight: bold;">Riepilogo e conferma</h3>
+    </ion-text>
 
     <!-- Bottone Prenota -->
-    <div class="mt6 justify-content-center" >
+    <div class="mt6 justify-content-center">
       <ion-button type="submit" (click)="setFullName()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
         color="dark">PRENOTA</ion-button>
-    </div>}
-
+    </div>
+    }
   </form>
 
 </ion-content>
@@ -84,7 +122,7 @@
       <div style="display: flex; justify-content: space-around;">
         <ion-button (click)="goBack()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
           color="danger">INDIETRO</ion-button>
-        <ion-button (click)="showNextSection()" [disabled]="nextSection"
+        <ion-button (click)="showNextSection()" [disabled]="currentSection === 4"
           style="margin-bottom: 10px; margin-top: 16px; width: 80%;" color="danger">AVANTI</ion-button>
       </div>
     </ion-title>
