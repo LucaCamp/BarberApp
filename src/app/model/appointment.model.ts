@@ -8,10 +8,10 @@ export class Appointment {
   service_id!: number;
 
   @required()
-  start_date!: Date;
+  start_date!: any;
 
   @required()
-  end_date!: Date;
+  end_date!: any;
 
   @required()
   full_name!: string;

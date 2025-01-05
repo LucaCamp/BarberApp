@@ -29,24 +29,24 @@
     <ion-list class="mt6">
       <ion-item>
         <ion-select placeholder="Seleziona un parrucchiere" formControlName="staff_id">
-          <ion-select-option value="1">Vincenzo Daì</ion-select-option>
+          <ion-select-option value="3">Vincenzo Daì</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-list>
     }@else if (currentSection === 2) {
 
     <p style="text-align: center;">Seleziona una tra le fasce orarie disponibili per fissare un incontro.</p>
-    <div class="justify-content-center"><ion-datetime presentation="date" (ionChange)="setDate()"
-        [isDateEnabled]="isWeekday" minuteValues="0,15,30,45" formControlName="start_date"></ion-datetime>
+    <div class="justify-content-center"><ion-datetime picker-format="YYYY-MM-DD" presentation="date"
+        (ionChange)="onDateChange($event)" [isDateEnabled]="isWeekday" formControlName="start_date"></ion-datetime>
     </div>
 
 
     <ion-list>
-      <ion-radio-group style="display: flex; flex-wrap: wrap; justify-content: center;" [compareWith]="compareWith"
+      <ion-radio-group style="display: flex; flex-wrap: wrap; justify-content: center;"
         (ionChange)="handleChange($event)">
-        @for (food of foods; track food.id) {
+        @for (time of timeGrid; track $index) {
         <ion-item style="width: 45%; margin-right: auto; ">
-          <ion-radio [disabled]="food.id === 1" [value]="food">{{ food.name }}</ion-radio>
+          <ion-radio [disabled]="time.free === 'N'" [value]="time.start_time"> {{ time.start_time}}</ion-radio>
         </ion-item>
         }
       </ion-radio-group>
@@ -101,17 +101,67 @@
     </ion-list>
     } @else if (currentSection === 4) {
 
-
+    <!-- Titolo della sezione -->
     <ion-text>
-      <h3 class="ion-text-start" style="font-weight: bold;">Riepilogo e conferma</h3>
+      <h3 class="ion-text-center" style="font-weight: bold;">Riepilogo e Conferma</h3>
     </ion-text>
+
+    <!-- Riepilogo dati prenotazione -->
+    <ion-card>
+      <ion-card-content>
+        <ion-list lines="none">
+          <!-- Nome Completo -->
+          <ion-item>
+            <ion-label>
+              <h3>Nome Completo</h3>
+              <p>{{ this.prenotazione.full_name }}</p>
+            </ion-label>
+          </ion-item>
+
+          <!-- Data di Inizio -->
+          <ion-item>
+            <ion-label>
+              <h3>Data prenotazione</h3>
+              <p>{{ this.prenotazione.start_date }}</p>
+            </ion-label>
+          </ion-item>
+
+          <!-- Email -->
+          <ion-item>
+            <ion-label>
+              <h3>Email</h3>
+              <p>{{ this.prenotazione.email }}</p>
+            </ion-label>
+          </ion-item>
+
+          <!-- Telefono -->
+          <ion-item>
+            <ion-label>
+              <h3>Telefono</h3>
+              <p>{{ this.prenotazione.phone }}</p>
+            </ion-label>
+          </ion-item>
+
+          <!-- Note -->
+          <ion-item>
+            <ion-label>
+              <h3>Note</h3>
+              <p>{{ this.prenotazione.notes || 'Nessuna nota aggiunta' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
 
     <!-- Bottone Prenota -->
     <div class="mt6 justify-content-center">
       <ion-button type="submit" (click)="setFullName()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
-        color="dark">PRENOTA</ion-button>
+        color="dark">
+        PRENOTA
+      </ion-button>
     </div>
     }
+
   </form>
 
 </ion-content>

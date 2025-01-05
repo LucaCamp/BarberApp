@@ -4,7 +4,6 @@ import { Route, Router, RouterLink } from '@angular/router';
 import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import { Appointment } from 'src/app/model/appointment.model';
 import { PrenotazioneService } from '../prenotazione.service';
-
 // interfaccia per mock dati radiopoint dinamici 
 interface Food {
   id: number;
@@ -25,7 +24,9 @@ export class FormPrenotazioneComponent implements OnInit {
   currentSection: number = 1;
   prenotazioneForm: RxFormGroup;
   prenotazione = new Appointment();
-
+  timeGrid: any
+  selectedTime: any
+  formattedSelectedDate: any
   constructor(
     private cd: ChangeDetectorRef,
     private formBuilder: RxFormBuilder,
@@ -35,42 +36,12 @@ export class FormPrenotazioneComponent implements OnInit {
     Object.setPrototypeOf(this.prenotazione, Appointment.prototype);
     this.prenotazioneForm = <RxFormGroup>this.formBuilder.formGroup(this.prenotazione);
   }
+  ngOnInit() { }
 
-  // mock dati per la gestione degli orari in maniera dinamica
-  foods: Food[] = [
-    {
-      id: 1,
-      name: '9:00',
-      type: 'fruit',
-    },
-    {
-      id: 2,
-      name: '9:30',
-      type: 'vegetable',
-    },
-    {
-      id: 3,
-      name: '10:00',
-      type: 'desst',
-    },
-    {
-      id: 4,
-      name: '10:30',
-      type: 'dsert',
-    },
-    {
-      id: 5,
-      name: '11:00',
-      type: 'dsert',
-    },
-  ];
-
-  compareWith(o1: Food, o2: Food): boolean {
-    return o1.id === o2.id;
-  }
 
   handleChange(event: Event): void {
     const target = event.target as HTMLInputElement;
+    this.selectedTime = target.value
     console.log('Current value:', JSON.stringify(target.value));
   }
 
@@ -88,22 +59,32 @@ export class FormPrenotazioneComponent implements OnInit {
 
 
   setEndDate() {
-    this.prenotazione.start_date = new Date(this.prenotazione.start_date)
-    this.prenotazione.end_date = new Date(this.prenotazione.start_date)
-    this.prenotazione.end_date.setUTCMinutes(this.prenotazione.start_date.getUTCMinutes() + 30)
-    console.log(this.prenotazione.start_date.toISOString() + " " + this.prenotazione.end_date.toISOString())
+    // this.prenotazione.start_date = new Date(this.prenotazione.start_date)
+    // this.prenotazione.end_date = new Date(this.prenotazione.start_date)
+    // this.prenotazione.end_date.setUTCMinutes(this.prenotazione.start_date.getUTCMinutes() + 30)
+    // console.log(this.prenotazione.start_date.toISOString() + " " + this.prenotazione.end_date.toISOString())
   }
 
   setFullName() {
     this.prenotazione.full_name = this.prenotazione.first_name + " " + this.prenotazione.last_name;
   }
-  setDate() {
-    this.setEndDate();
+  onDateChange(event: any) {
+    const isoDate = event.detail.value;  // Ottieni il valore ISO 8601
+    this.formattedSelectedDate = this.convertToYYYYMMDD(isoDate);  // Formatta la data come 'YYYY-MM-DD'
+    this.prenotazione.start_date = this.formattedSelectedDate
+    this.getTimeGrid()
+    // this.setEndDate();
     //  this.prenotazione.start_date = this.formatDateToString( new Date(this.prenotazione.start_date));
     //  this.prenotazione.end_date = this.formatDateToString(new Date (this.prenotazione.end_date))
   }
 
-  ngOnInit() { }
+  convertToYYYYMMDD(isoString: string): string {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');  // Mese con due cifre
+    const day = String(date.getDate()).padStart(2, '0');  // Giorno con due cifre
+    return `${year}-${month}-${day}`;
+  }
 
   goBack() {
     if (this.currentSection > 1) {
@@ -116,11 +97,26 @@ export class FormPrenotazioneComponent implements OnInit {
   showNextSection() {
     if (this.currentSection < 4) { }
     this.currentSection += 1;
+    if (this.currentSection == 4) {
+      this.setFullName()
+      this.prenotazione.start_date = this.formattedSelectedDate + " " + this.selectedTime
+    }
   }
 
+  getTimeGrid() {
+    this.prenotazioneService.getTimeGrid(this.prenotazione.service_id, this.prenotazione.staff_id, this.prenotazione.start_date).subscribe(
+      data => {
+        this.timeGrid = data
+        this.timeGrid = this.timeGrid.data
+        console.log(this.timeGrid)
+      })
+
+  }
   submitAppointment() {
     console.log(this.prenotazione)
     // this.prenotazioneService.createAppointment(this.prenotazione).subscribe()
   }
+
+
 }
 
