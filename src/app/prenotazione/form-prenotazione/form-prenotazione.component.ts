@@ -40,6 +40,21 @@ export class FormPrenotazioneComponent implements OnInit {
   }
   ngOnInit() { }
 
+  getServiceDuration(): number {
+    this.prenotazione.service_id = Number(this.prenotazione.service_id)
+    switch (this.prenotazione.service_id) {
+      case 1:
+        return 30
+      case 2:
+        return 15
+      case 3:
+        return 15
+      default:
+        console.log(typeof (this.prenotazione.service_id))
+        return 17
+    }
+  }
+
   handleChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.selectedTime = target.value;
@@ -67,19 +82,7 @@ export class FormPrenotazioneComponent implements OnInit {
     const endTimeDate = new Date(selectedTimeDate);
 
     // Adjust time based on serviceId
-    switch (this.prenotazione.service_id) {
-      case 1:
-        endTimeDate.setMinutes(endTimeDate.getMinutes() + 30);
-        break;
-      case 2:
-        endTimeDate.setMinutes(endTimeDate.getMinutes() + 15);
-        break;
-      case 3:
-        endTimeDate.setMinutes(endTimeDate.getMinutes() + 15);
-        break;
-      default:
-        console.log(typeof (this.prenotazione.service_id))
-    }
+    endTimeDate.setMinutes(endTimeDate.getMinutes() + this.getServiceDuration());
 
     // Format the updated time back to a string in "HH:MM:SS" format
     return endTimeDate.toTimeString().split(' ')[0]; // Take only the "HH:MM:SS" part
