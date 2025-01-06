@@ -10,3 +10,22 @@
 ::ng-deep .input-label-placement-floating.sc-ion-input-md-h .label-text-wrapper.sc-ion-input-md {
     width: 100%;
 }
+
+.segment-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.segment-box {
+    width: 30%;
+    height: 10px;
+    background-color: lightgray; // Colore predefinito per i segmenti inattivi
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.segment-box.active {
+    background-color: #f04141; // Colore rosso per il segmento attivo
+}

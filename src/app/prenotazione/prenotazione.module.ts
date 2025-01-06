@@ -8,12 +8,14 @@ import { FormPrenotazioneComponent } from './form-prenotazione/form-prenotazione
 import { IonHeader, IonicModule, IonItem, IonList, IonNavLink, IonSelect, IonSelectOption } from '@ionic/angular';
 import { provideHttpClient } from '@angular/common/http';
 import { RiepilogoComponent } from './riepilogo/riepilogo.component';
+import { ServiceSectionComponent } from './service-section/service-section.component';
+import { DatatimeSectionComponent } from './datatime-section/datatime-section.component';
 
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  declarations: [FormPrenotazioneComponent, RiepilogoComponent],
+  declarations: [FormPrenotazioneComponent, ServiceSectionComponent, DatatimeSectionComponent, RiepilogoComponent],
   imports: [
     CommonModule,
     PrenotazioneRoutingModule,
