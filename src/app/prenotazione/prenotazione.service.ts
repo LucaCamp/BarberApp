@@ -10,6 +10,8 @@ export class PrenotazioneService {
     appEndpoint = "https://daibarber.it/wp-json/customappointment/v1/create_app"
     timeGridEndpoint = "https://daibarber.it/wp-json/customappointment/v1/get_timegrid"
 
+    prenotazione = new Appointment()
+
     constructor(private http: HttpClient) {
     }
 
@@ -33,10 +35,13 @@ export class PrenotazioneService {
                     console.log(responseData);
                     switch (responseData.status) {
                         case 200:
-                            console.log('Utente loggato');
+                            console.log('Prenotazione confermata');
+                            break;
+                        case 201:
+                            console.log('Prenotazione confermata');
                             break;
                         default:
-                            console.log('entro quà');
+                            console.log('');
                     }
                 }),
                 catchError((err: HttpErrorResponse) => {
@@ -45,12 +50,6 @@ export class PrenotazioneService {
                     switch (err.status) {
                         case 400:
                             error = 'Dati inseriti non validi';
-                            break;
-                        case 403:
-                            error = 'Nome utente o password errati';
-                            break;
-                        case 404:
-                            error = 'Nome utente o password non trovati';
                             break;
                         case 500:
                             error =

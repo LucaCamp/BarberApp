@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content class="ion-padding">
 
-  <form action="" [formGroup]="prenotazioneForm" (ngSubmit)="submitAppointment()">
+  <form action="" [formGroup]="prenotazioneForm">
 
     @if(currentSection === 1){
     <!-- LOGO -->
@@ -36,11 +36,12 @@
     }@else if (currentSection === 2) {
 
     <p style="text-align: center;">Seleziona una tra le fasce orarie disponibili per fissare un incontro.</p>
+    <!-- CALENDAR -->
     <div class="justify-content-center"><ion-datetime picker-format="YYYY-MM-DD" presentation="date"
         (ionChange)="onDateChange($event)" [isDateEnabled]="isWeekday" formControlName="start_date"></ion-datetime>
     </div>
-
-
+    <!-- TIMEGRID -->
+    @if (loadedTimeGrid){
     <ion-list>
       <ion-radio-group style="display: flex; flex-wrap: wrap; justify-content: center;"
         (ionChange)="handleChange($event)">
@@ -51,6 +52,10 @@
         }
       </ion-radio-group>
     </ion-list>
+    }@else {
+    <!-- LOADER -->
+    <div style="display: flex; justify-content: center;"><ion-spinner></ion-spinner></div>
+    }
 
     }@else if (currentSection === 3){
 
@@ -99,67 +104,6 @@
         <ion-textarea aria-label="Comments" value="Note aggiuntive" formControlName="notes">Note</ion-textarea>
       </ion-item>
     </ion-list>
-    } @else if (currentSection === 4) {
-
-    <!-- Titolo della sezione -->
-    <ion-text>
-      <h3 class="ion-text-center" style="font-weight: bold;">Riepilogo e Conferma</h3>
-    </ion-text>
-
-    <!-- Riepilogo dati prenotazione -->
-    <ion-card>
-      <ion-card-content>
-        <ion-list lines="none">
-          <!-- Nome Completo -->
-          <ion-item>
-            <ion-label>
-              <h3>Nome Completo</h3>
-              <p>{{ this.prenotazione.full_name }}</p>
-            </ion-label>
-          </ion-item>
-
-          <!-- Data di Inizio -->
-          <ion-item>
-            <ion-label>
-              <h3>Data prenotazione</h3>
-              <p>{{ this.prenotazione.start_date }}</p>
-            </ion-label>
-          </ion-item>
-
-          <!-- Email -->
-          <ion-item>
-            <ion-label>
-              <h3>Email</h3>
-              <p>{{ this.prenotazione.email }}</p>
-            </ion-label>
-          </ion-item>
-
-          <!-- Telefono -->
-          <ion-item>
-            <ion-label>
-              <h3>Telefono</h3>
-              <p>{{ this.prenotazione.phone }}</p>
-            </ion-label>
-          </ion-item>
-
-          <!-- Note -->
-          <ion-item>
-            <ion-label>
-              <h3>Note</h3>
-              <p>{{ this.prenotazione.notes || 'Nessuna nota aggiunta' }}</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
-    </ion-card>
-
-    <!-- Bottone Prenota -->
-    <div class="mt6 justify-content-center">
-      <ion-button type="submit" (click)="setFullName()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
-        color="dark">
-        PRENOTA
-      </ion-button>
-    </div>
     }
 
   </form>

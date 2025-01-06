@@ -27,6 +27,7 @@ export class FormPrenotazioneComponent implements OnInit {
   selectedTime: any
   formattedSelectedDate: any
   endTime: string = '';
+  loadedTimeGrid: boolean = true;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -41,8 +42,8 @@ export class FormPrenotazioneComponent implements OnInit {
   ngOnInit() { }
 
   getServiceDuration(): number {
-    this.prenotazione.service_id = Number(this.prenotazione.service_id)
-    switch (this.prenotazione.service_id) {
+    const serviceId = Number(this.prenotazione.service_id)
+    switch (serviceId) {
       case 1:
         return 30
       case 2:
@@ -66,7 +67,7 @@ export class FormPrenotazioneComponent implements OnInit {
     this.endTime = this.setEndTime(target.value);
 
     // Log the updated end time
-    console.log('End time (30 minutes later):', this.endTime);
+    console.log('End time):', this.endTime);
   }
 
   setEndTime(selectedTime: string): string {
@@ -108,6 +109,7 @@ export class FormPrenotazioneComponent implements OnInit {
     this.prenotazione.full_name = this.prenotazione.first_name + " " + this.prenotazione.last_name;
   }
   onDateChange(event: any) {
+    this.loadedTimeGrid = false;
     const isoDate = event.detail.value;  // Ottieni il valore ISO 8601
     this.formattedSelectedDate = this.convertToYYYYMMDD(isoDate);  // Formatta la data come 'YYYY-MM-DD'
     this.prenotazione.start_date = this.formattedSelectedDate
@@ -139,8 +141,9 @@ export class FormPrenotazioneComponent implements OnInit {
       this.setFullName()
       this.setEndDate()
       this.prenotazione.start_date = this.formattedSelectedDate + " " + this.selectedTime
-
       console.log(this.prenotazione.start_date + ' ' + this.prenotazione.end_date)
+      this.prenotazioneService.prenotazione = this.prenotazione
+      this.router.navigate(['prenota/riepilogo'])
     }
   }
 
@@ -149,36 +152,10 @@ export class FormPrenotazioneComponent implements OnInit {
       data => {
         this.timeGrid = data
         this.timeGrid = this.timeGrid.data
-        console.log(this.timeGrid)
+        this.loadedTimeGrid = true;
         this.cd.detectChanges();
       })
-
   }
 
-  submitAppointment() {
-    console.log(this.prenotazione)
-    this.prenotazioneService.createAppointment(this.prenotazione).subscribe({
-      next: (response) => {
-        // Successo: Mostra un messaggio di conferma
-        this.showConfirmationAlert('Prenotazione confermata', 'La tua prenotazione è stata effettuata con successo.');
-      },
-      error: (error) => {
-        // Errore: Mostra un messaggio di errore
-        this.showConfirmationAlert('Errore', 'Si è verificato un errore durante la prenotazione. Riprova più tardi.');
-        console.error('Errore durante la creazione della prenotazione:', error);
-      }
-    }
-    )
-  }
-
-  async showConfirmationAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
 }
 
