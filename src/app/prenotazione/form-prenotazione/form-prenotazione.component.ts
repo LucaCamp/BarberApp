@@ -48,16 +48,14 @@ export class FormPrenotazioneComponent implements OnInit {
     console.log('Current value:', JSON.stringify(target.value));
 
     // Call the setEndTime function to calculate the end time
-    this.endTime = this.setEndTime(target.value, this.prenotazione.service_id);
+    this.endTime = this.setEndTime(target.value);
 
     // Log the updated end time
     console.log('End time (30 minutes later):', this.endTime);
   }
 
-  setEndTime(selectedTime: string, serviceId: number): string {
-    const parsedServiceId = Number(serviceId);  // Ensure serviceId is a number
-    console.log(`Parsed serviceId: ${parsedServiceId}`);
-
+  setEndTime(selectedTime: string): string {
+    this.prenotazione.service_id = Number(this.prenotazione.service_id)
     // Parsing the selected time string (e.g. "09:30:00") to a Date object
     const selectedTimeDate = new Date();
     const [hours, minutes, seconds] = selectedTime.split(':').map(Number);
@@ -69,7 +67,7 @@ export class FormPrenotazioneComponent implements OnInit {
     const endTimeDate = new Date(selectedTimeDate);
 
     // Adjust time based on serviceId
-    switch (parsedServiceId) {
+    switch (this.prenotazione.service_id) {
       case 1:
         endTimeDate.setMinutes(endTimeDate.getMinutes() + 30);
         break;
@@ -80,15 +78,12 @@ export class FormPrenotazioneComponent implements OnInit {
         endTimeDate.setMinutes(endTimeDate.getMinutes() + 15);
         break;
       default:
-        throw new Error(`Errore: serviceId ${parsedServiceId} non valido.`);
+        console.log(typeof (this.prenotazione.service_id))
     }
 
     // Format the updated time back to a string in "HH:MM:SS" format
     return endTimeDate.toTimeString().split(' ')[0]; // Take only the "HH:MM:SS" part
   }
-
-
-
 
   //
   isWeekday = (dateString: string) => {
