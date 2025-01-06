@@ -34,12 +34,14 @@ export class FormPrenotazioneComponent implements OnInit {
     private formBuilder: RxFormBuilder,
     private router: Router,
     private prenotazioneService: PrenotazioneService,
-    private alertController: AlertController
+
   ) {
     Object.setPrototypeOf(this.prenotazione, Appointment.prototype);
     this.prenotazioneForm = <RxFormGroup>this.formBuilder.formGroup(this.prenotazione);
   }
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   getServiceDuration(): number {
     const serviceId = Number(this.prenotazione.service_id)
@@ -134,10 +136,12 @@ export class FormPrenotazioneComponent implements OnInit {
   }
 
   showNextSection() {
-    if (this.currentSection < 4) { }
-    this.currentSection += 1;
-    console.log(this.prenotazione.service_id)
-    if (this.currentSection == 4) {
+    if (this.currentSection < 3) {
+      this.currentSection += 1;
+      console.log(this.prenotazione.service_id)
+      return;
+    }
+    if (this.currentSection === 3) {
       this.setFullName()
       this.setEndDate()
       this.prenotazione.start_date = this.formattedSelectedDate + " " + this.selectedTime

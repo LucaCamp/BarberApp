@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormPrenotazioneComponent } from './form-prenotazione/form-prenotazione.component';
 import { IonHeader, IonicModule, IonItem, IonList, IonNavLink, IonSelect, IonSelectOption } from '@ionic/angular';
 import { provideHttpClient } from '@angular/common/http';
-import { RiepilogoComponent } from '../riepilogo/riepilogo.component';
+import { RiepilogoComponent } from './riepilogo/riepilogo.component';
 
 
 @NgModule({

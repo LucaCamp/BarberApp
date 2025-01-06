@@ -12,23 +12,21 @@
     <!-- Sezione Galleria -->
     <div class="card-container">
       <h3 class="ion-text-start" style="font-weight: bold;">Galleria</h3>
-      <swiper-container class="service-swiper" [slidesPerView]="2" 
-      autoplay-disable-on-interaction="false">
-      @for (image of images; track image) { <swiper-slide><ion-card  style="width: 180px; height: 180px; overflow: hidden; display: flex; flex-direction: column;">
-        <ion-img src={{image.path}} alt="Taglio"
-          style="width: 100%; height: 100%; object-fit: cover;"></ion-img>
-      </ion-card></swiper-slide>}
-         
+      <swiper-container class="service-swiper" [slidesPerView]="2" autoplay-disable-on-interaction="false">
+        @for (image of images; track image) { <swiper-slide class='swiper-slide'><ion-card
+            style="width: 180px; height: 180px; overflow: hidden; display: flex; flex-direction: column;">
+            <ion-img src={{image.path}} alt="Taglio" style="width: 100%; height: 100%; object-fit: cover;"></ion-img>
+          </ion-card></swiper-slide>}
 
-    </swiper-container>
-  
+
+      </swiper-container>
+
     </div>
 
     <!-- Sezione Servizi -->
     <div style="flex-shrink: 1; ">
       <h3 class="ion-text-start" style="font-weight: bold;">Servizi</h3>
-      <swiper-container class="service-swiper" [slidesPerView]="2" 
-        autoplay-disable-on-interaction="false">
+      <swiper-container class="service-swiper" [slidesPerView]="2" autoplay-disable-on-interaction="false">
         <swiper-slide><ion-chip style="--background: white;">Taglio 12€</ion-chip></swiper-slide>
         <swiper-slide><ion-chip style="--background: white;">Barba 12€</ion-chip></swiper-slide>
         <swiper-slide><ion-chip style="--background: white;">Shampoo 12€</ion-chip></swiper-slide>
@@ -43,7 +41,7 @@
       <ion-button routerLink="/prenota" style="margin-bottom: 10px; margin-top: 16px; width: 80%;" color="dark">Prenota
         il tuo
         appuntamento</ion-button>
-        
+
     </div>
   </div>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Appointment } from '../model/appointment.model';
-import { PrenotazioneService } from '../prenotazione/prenotazione.service';
+import { Appointment } from '../../model/appointment.model';
+import { PrenotazioneService } from '../prenotazione.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -55,6 +55,6 @@ export class RiepilogoComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['prenota'])
+    this.router.navigate(['prenota']);
   }
 }

@@ -35,6 +35,7 @@
     </ion-list>
     }@else if (currentSection === 2) {
 
+    <!-- SECONDA SEZIONE FORM -->
     <p style="text-align: center;">Seleziona una tra le fasce orarie disponibili per fissare un incontro.</p>
     <!-- CALENDAR -->
     <div class="justify-content-center"><ion-datetime picker-format="YYYY-MM-DD" presentation="date"
@@ -57,7 +58,8 @@
     <div style="display: flex; justify-content: center;"><ion-spinner></ion-spinner></div>
     }
 
-    }@else if (currentSection === 3){
+    <!-- TERZA SEZIONE FORM -->
+    }@else {
 
 
     <ion-list class="mt6">
@@ -116,8 +118,8 @@
       <div style="display: flex; justify-content: space-around;">
         <ion-button (click)="goBack()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
           color="danger">INDIETRO</ion-button>
-        <ion-button (click)="showNextSection()" [disabled]="currentSection === 4"
-          style="margin-bottom: 10px; margin-top: 16px; width: 80%;" color="danger">AVANTI</ion-button>
+        <ion-button (click)="showNextSection()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
+          color="danger">AVANTI</ion-button>
       </div>
     </ion-title>
   </ion-toolbar>
