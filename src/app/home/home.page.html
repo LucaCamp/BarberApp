@@ -11,7 +11,7 @@
 
     <!-- Sezione Galleria -->
     <div class="card-container">
-      <h3 class="ion-text-start" style="font-weight: bold;">Galleria</h3>
+      <h3 class="ion-text-start" style="font-weight: bold;"><ion-toolbar class="custom-toolbar">Galleria</ion-toolbar></h3>
       <swiper-container class="service-swiper" [slidesPerView]="2" autoplay-disable-on-interaction="false">
         @for (image of images; track image) { <swiper-slide class='swiper-slide'><ion-card
             style="width: 180px; height: 180px; overflow: hidden; display: flex; flex-direction: column;">
@@ -25,12 +25,12 @@
 
     <!-- Sezione Servizi -->
     <div style="flex-shrink: 1; ">
-      <h3 class="ion-text-start" style="font-weight: bold;">Servizi</h3>
+      <h3 class="ion-text-start" style="font-weight: bold;"><ion-toolbar class="custom-toolbar">Servizi</ion-toolbar></h3>
       <swiper-container class="service-swiper" [slidesPerView]="2" autoplay-disable-on-interaction="false">
-        <swiper-slide><ion-chip style="--background: white;">Taglio 12€</ion-chip></swiper-slide>
-        <swiper-slide><ion-chip style="--background: white;">Barba 12€</ion-chip></swiper-slide>
-        <swiper-slide><ion-chip style="--background: white;">Shampoo 12€</ion-chip></swiper-slide>
-        <swiper-slide><ion-chip style="--background: white;">Pulizia del viso 12€</ion-chip></swiper-slide>
+        <swiper-slide><ion-chip class="theme-chip">Taglio 12€</ion-chip></swiper-slide>
+        <swiper-slide><ion-chip class="theme-chip">Barba 12€</ion-chip></swiper-slide>
+        <swiper-slide><ion-chip class="theme-chip">Shampoo 12€</ion-chip></swiper-slide>
+        <swiper-slide><ion-chip class="theme-chip">Pulizia del viso 12€</ion-chip></swiper-slide>
 
       </swiper-container>
 
