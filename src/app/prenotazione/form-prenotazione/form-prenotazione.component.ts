@@ -43,7 +43,6 @@ export class FormPrenotazioneComponent implements OnInit {
   }
 
   goBack() {
-    this.invalidForm = false;
     if (this.currentSection > 1) {
       this.currentSection -= 1
     } else if (this.currentSection === 1) {
@@ -61,11 +60,38 @@ export class FormPrenotazioneComponent implements OnInit {
       this.setEndDate()
       console.log(this.prenotazioneService.prenotazione.start_date + ' ' + this.prenotazioneService.prenotazione.end_date)
       this.prenotazioneService.prenotazione = this.prenotazioneService.prenotazione
-      this.invalidForm = true;
     }
   }
 
+  isInvalidSection() {
+    return !this.validateCurrentSection();
+  }
 
+  validateCurrentSection(): boolean {
+    let sectionValid = false
 
+    switch (this.currentSection) {
+      case 1:
+        sectionValid = (this.prenotazioneForm.get('service_id')?.valid && this.prenotazioneForm.get('staff_id')?.valid) ?? false;
+        break;
+      case 2:
+        // Supponiamo di avere un componente data e ora qui
+
+        break;
+      case 3:
+
+        break;
+      // Aggiungi altri casi per altre sezioni
+      default:
+        sectionValid = false;
+        break;
+    }
+
+    if (!sectionValid) {
+      this.prenotazioneForm.markAllAsTouched(); // Segna tutti i controlli come toccati per mostrare gli errori
+    }
+
+    return sectionValid;
+  }
 }
 
