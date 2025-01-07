@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { RiepilogoComponent } from './riepilogo.component';
+import { PersonalDataSectionComponent } from './personal-data-section.component';
 
-describe('RiepilogoComponent', () => {
-  let component: RiepilogoComponent;
-  let fixture: ComponentFixture<RiepilogoComponent>;
+describe('PersonalDataSectionComponent', () => {
+  let component: PersonalDataSectionComponent;
+  let fixture: ComponentFixture<PersonalDataSectionComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RiepilogoComponent ],
+      declarations: [ PersonalDataSectionComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RiepilogoComponent);
+    fixture = TestBed.createComponent(PersonalDataSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -5,12 +5,12 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-riepilogo',
-  templateUrl: './riepilogo.component.html',
-  styleUrls: ['./riepilogo.component.scss'],
+  selector: 'app-confirm',
+  templateUrl: './confirm.component.html',
+  styleUrls: ['./confirm.component.scss'],
   standalone: false
 })
-export class RiepilogoComponent implements OnInit {
+export class ConfirmComponent implements OnInit {
   prenotazione: Appointment;
   isLoadingSubmit: boolean = false;
 
@@ -22,7 +22,8 @@ export class RiepilogoComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.prenotazione = this.prenotazioneService.prenotazione
+    console.log(this.prenotazione)
   }
 
   submitAppointment() {

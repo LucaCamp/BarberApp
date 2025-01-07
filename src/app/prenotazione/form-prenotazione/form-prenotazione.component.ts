@@ -18,6 +18,7 @@ export class FormPrenotazioneComponent implements OnInit {
   formattedSelectedDate: any
   endTime: string = '';
   loadedTimeGrid: boolean = true;
+  invalidForm: boolean = false;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -42,6 +43,7 @@ export class FormPrenotazioneComponent implements OnInit {
   }
 
   goBack() {
+    this.invalidForm = false;
     if (this.currentSection > 1) {
       this.currentSection -= 1
     } else if (this.currentSection === 1) {
@@ -50,18 +52,16 @@ export class FormPrenotazioneComponent implements OnInit {
   }
 
   showNextSection() {
-    if (this.currentSection < 3) {
+    if (this.currentSection < 4) {
       this.currentSection += 1;
       console.log(this.prenotazioneService.prenotazione.service_id)
-      return;
     }
-    if (this.currentSection === 3) {
+    if (this.currentSection === 4) {
       this.setFullName()
       this.setEndDate()
-
       console.log(this.prenotazioneService.prenotazione.start_date + ' ' + this.prenotazioneService.prenotazione.end_date)
       this.prenotazioneService.prenotazione = this.prenotazioneService.prenotazione
-      this.router.navigate(['prenota/riepilogo'])
+      this.invalidForm = true;
     }
   }
 

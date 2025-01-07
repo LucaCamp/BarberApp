@@ -1,0 +1,44 @@
+<ion-list class="mt4" [formGroup]="formGroup">
+  <ion-item>
+    <ion-input labelPlacement="floating" value="Ciccio" formControlName="first_name">
+      <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+        <div>Nome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+      </div>
+    </ion-input>
+  </ion-item>
+</ion-list>
+<ion-list class="mt4" [formGroup]="formGroup">
+  <ion-item>
+    <ion-input labelPlacement="floating" value="Pasticcio" formControlName="last_name">
+      <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+        <div>Cognome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+      </div>
+    </ion-input>
+  </ion-item>
+</ion-list>
+
+<ion-list class="mt4" [formGroup]="formGroup">
+  <ion-item>
+    <ion-input labelPlacement="floating" value="3333333333" formControlName="phone">
+      <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+        <div>Telefono</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+      </div>
+    </ion-input>
+  </ion-item>
+</ion-list>
+
+<ion-list class="mt4" [formGroup]="formGroup">
+  <ion-item>
+    <ion-input labelPlacement="floating" value="hi@ionic.io" formControlName="email">
+      <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
+        <div>Email</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
+      </div>
+    </ion-input>
+  </ion-item>
+</ion-list>
+
+<ion-list class="mt4" [formGroup]="formGroup">
+  <ion-item>
+    <ion-textarea aria-label="Comments" value="Note aggiuntive" formControlName="notes">Note</ion-textarea>
+  </ion-item>
+</ion-list>

@@ -1,0 +1,57 @@
+<ion-card>
+  <ion-card-content>
+    <ion-list lines="none">
+      <!-- Nome Completo -->
+      <ion-item>
+        <ion-label>
+          <h3>Nome Completo</h3>
+          <p>{{ this.prenotazione.full_name }}</p>
+        </ion-label>
+      </ion-item>
+
+      <!-- Data di Inizio -->
+      <ion-item>
+        <ion-label>
+          <h3>Data prenotazione</h3>
+          <p>{{ this.prenotazione.start_date }}</p>
+        </ion-label>
+      </ion-item>
+
+      <!-- Email -->
+      <ion-item>
+        <ion-label>
+          <h3>Email</h3>
+          <p>{{ this.prenotazione.email }}</p>
+        </ion-label>
+      </ion-item>
+
+      <!-- Telefono -->
+      <ion-item>
+        <ion-label>
+          <h3>Telefono</h3>
+          <p>{{ this.prenotazione.phone }}</p>
+        </ion-label>
+      </ion-item>
+
+      <!-- Note -->
+      <ion-item>
+        <ion-label>
+          <h3>Note</h3>
+          <p>{{ this.prenotazione.notes || 'Nessuna nota aggiunta' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Bottone Prenota -->
+    <div class="mt6 justify-content-center">
+      @if(isLoadingSubmit){
+      <ion-spinner></ion-spinner>
+      }@else{
+      <ion-button type="button" (click)="submitAppointment()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
+        color="dark">
+        Conferma Prenotazione
+      </ion-button>
+      }
+    </div>
+  </ion-card-content>
+</ion-card>

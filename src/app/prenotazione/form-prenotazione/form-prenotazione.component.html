@@ -23,53 +23,12 @@
     <app-datatime-section [formGroup]="prenotazioneForm"></app-datatime-section>
 
     <!-- TERZA SEZIONE FORM -->
-    }@else {
+    }@else if(currentSection === 3) {
 
-
-    <ion-list class="mt6">
-      <ion-item>
-        <ion-input labelPlacement="floating" value="Ciccio" formControlName="first_name">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
-            <div>Nome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
-          </div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
-    <ion-list class="mt6">
-      <ion-item>
-        <ion-input labelPlacement="floating" value="Pasticcio" formControlName="last_name">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
-            <div>Cognome</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
-          </div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-list class="mt6">
-      <ion-item>
-        <ion-input labelPlacement="floating" value="3333333333" formControlName="phone">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
-            <div>Telefono</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
-          </div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-list class="mt6">
-      <ion-item>
-        <ion-input labelPlacement="floating" value="hi@ionic.io" formControlName="email">
-          <div style="justify-content: space-between; display: flex; width: 100%;" slot="label">
-            <div>Email</div><ion-text><ion-icon name="pencil-sharp"></ion-icon></ion-text>
-          </div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-list class="mt6">
-      <ion-item>
-        <ion-textarea aria-label="Comments" value="Note aggiuntive" formControlName="notes">Note</ion-textarea>
-      </ion-item>
-    </ion-list>
+    <app-personal-data-section [formGroup]="prenotazioneForm"></app-personal-data-section>
+    }
+    @else if(currentSection === 4){
+    <app-confirm [formGroup]="prenotazioneForm"></app-confirm>
     }
 
   </form>
@@ -82,8 +41,8 @@
       <div style="display: flex; justify-content: space-around;">
         <ion-button (click)="goBack()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
           color="danger">INDIETRO</ion-button>
-        <ion-button (click)="showNextSection()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
-          color="danger">AVANTI</ion-button>
+        <ion-button (click)="showNextSection()" [disabled]="invalidForm"
+          style="margin-bottom: 10px; margin-top: 16px; width: 80%;" color="danger">AVANTI</ion-button>
       </div>
     </ion-title>
   </ion-toolbar>
