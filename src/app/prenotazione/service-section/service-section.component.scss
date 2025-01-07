@@ -1,0 +1,15 @@
+/* Nascondi l'immagine per la modalità scura per default */
+.theme-image-dark {
+  display: none;
+}
+
+/* Quando la modalità scura è attiva */
+@media (prefers-color-scheme: dark) {
+  .theme-image {
+    display: none;
+  }
+
+  .theme-image-dark {
+    display: block;
+  }
+}
