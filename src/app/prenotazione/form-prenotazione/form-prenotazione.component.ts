@@ -75,13 +75,14 @@ export class FormPrenotazioneComponent implements OnInit {
         sectionValid = (this.prenotazioneForm.get('service_id')?.valid && this.prenotazioneForm.get('staff_id')?.valid) ?? false;
         break;
       case 2:
-        // Supponiamo di avere un componente data e ora qui
-
+        sectionValid = true
         break;
       case 3:
-
+        sectionValid = true
         break;
-      // Aggiungi altri casi per altre sezioni
+      case 4:
+        sectionValid = false
+        break;
       default:
         sectionValid = false;
         break;
