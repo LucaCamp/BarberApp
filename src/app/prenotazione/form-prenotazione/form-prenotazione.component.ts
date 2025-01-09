@@ -34,10 +34,6 @@ export class FormPrenotazioneComponent implements OnInit {
   ngOnInit() {
   }
 
-  setEndDate() {
-    this.prenotazioneService.prenotazione.end_date = this.prenotazioneService.prenotazione.start_date + ' ' + this.endTime
-  }
-
   setFullName() {
     this.prenotazioneService.prenotazione.full_name = this.prenotazioneService.prenotazione.first_name + " " + this.prenotazioneService.prenotazione.last_name;
   }
@@ -57,8 +53,6 @@ export class FormPrenotazioneComponent implements OnInit {
     }
     if (this.currentSection === 4) {
       this.setFullName()
-      this.setEndDate()
-      console.log(this.prenotazioneService.prenotazione.start_date + ' ' + this.prenotazioneService.prenotazione.end_date)
       this.prenotazioneService.prenotazione = this.prenotazioneService.prenotazione
     }
   }

@@ -11,7 +11,6 @@ import { PrenotazioneService } from '../prenotazione.service';
 export class DatatimeSectionComponent implements OnInit {
   @Input() formGroup!: RxFormGroup;
   formattedSelectedDate: any
-  endTime: string = '';
   loadedTimeGrid: boolean = true;
   timeGrid: any
   selectedTime: any
@@ -68,44 +67,9 @@ export class DatatimeSectionComponent implements OnInit {
     console.log('Current value:', JSON.stringify(target.value));
 
     // Call the setEndTime function to calculate the end time
-    this.endTime = this.setEndTime(target.value);
     this.prenotazioneService.prenotazione.start_date = this.formattedSelectedDate + " " + this.selectedTime
     // Log the updated end time
-    console.log('End time):', this.endTime);
-  }
-
-  setEndTime(selectedTime: string): string {
-    this.prenotazioneService.prenotazione.service_id = Number(this.prenotazioneService.prenotazione.service_id)
-    // Parsing the selected time string (e.g. "09:30:00") to a Date object
-    const selectedTimeDate = new Date();
-    const [hours, minutes, seconds] = selectedTime.split(':').map(Number);
-
-    // Set the time of selectedTimeDate based on the selected value
-    selectedTimeDate.setHours(hours, minutes, seconds || 0);
-
-    // Clone the Date object to avoid mutating the original time
-    const endTimeDate = new Date(selectedTimeDate);
-
-    // Adjust time based on serviceId
-    endTimeDate.setMinutes(endTimeDate.getMinutes() + this.getServiceDuration());
-
-    // Format the updated time back to a string in "HH:MM:SS" format
-    return endTimeDate.toTimeString().split(' ')[0]; // Take only the "HH:MM:SS" part
   }
 
 
-  getServiceDuration(): number {
-    const serviceId = Number(this.prenotazioneService.prenotazione.service_id)
-    switch (serviceId) {
-      case 1:
-        return 30
-      case 2:
-        return 15
-      case 3:
-        return 15
-      default:
-        console.log(typeof (this.prenotazioneService.prenotazione.service_id))
-        return 17
-    }
-  }
 }

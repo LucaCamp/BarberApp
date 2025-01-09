@@ -11,9 +11,6 @@ export class Appointment {
   start_date!: any;
 
   @required()
-  end_date!: any;
-
-  @required()
   full_name!: string;
 
   @required()
