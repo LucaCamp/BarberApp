@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RxFormGroup } from '@rxweb/reactive-form-validators';
 import { PrenotazioneService } from '../prenotazione.service';
 
@@ -14,12 +14,34 @@ export class DatatimeSectionComponent implements OnInit {
   loadedTimeGrid: boolean = true;
   timeGrid: any
   selectedTime: any
+  @Output()
+  IsSelectedTime = new EventEmitter<any>()
+
 
   constructor(private prenotazioneService: PrenotazioneService,
     private cd: ChangeDetectorRef,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    if (this.prenotazioneService.selectedTime) {
+      this.selectedTime = this.prenotazioneService.selectedTime
+    }
+
+    if (this.prenotazioneService.prenotazione.start_date) {
+      this.formGroup.get('start_date')?.setValue(this.prenotazioneService.prenotazione.start_date)
+      this.getTimeGrid(this.prenotazioneService.prenotazione.start_date)
+    } else {
+      const today = new Date();
+      const isoDate = today.toISOString().split('T')[0];
+      this.formGroup.get('start_date')?.setValue(isoDate)
+      const formattedToday = this.convertToYYYYMMDD(today.toISOString());
+      this.formattedSelectedDate = today;
+      this.getTimeGrid(formattedToday)
+
+    }
+
+    debugger  }
 
   isWeekday = (dateString: string) => {
     const date = new Date(dateString);
@@ -36,8 +58,8 @@ export class DatatimeSectionComponent implements OnInit {
     this.loadedTimeGrid = false;
     const isoDate = event.detail.value;  // Ottieni il valore ISO 8601
     this.formattedSelectedDate = this.convertToYYYYMMDD(isoDate);  // Formatta la data come 'YYYY-MM-DD'
-    this.prenotazioneService.prenotazione.start_date = this.formattedSelectedDate
-    this.getTimeGrid()
+    this.getTimeGrid(this.formattedSelectedDate)
+    this.prenotazioneService.formattedSelectedDate = this.formattedSelectedDate
 
   }
 
@@ -49,8 +71,9 @@ export class DatatimeSectionComponent implements OnInit {
     return `${year}-${month}-${day}`;
   }
 
-  getTimeGrid() {
-    this.prenotazioneService.getTimeGrid(this.prenotazioneService.prenotazione.service_id, this.prenotazioneService.prenotazione.staff_id, this.formattedSelectedDate).subscribe(
+  getTimeGrid(selectedDate: string) {
+    this.loadedTimeGrid = false;
+    this.prenotazioneService.getTimeGrid(this.prenotazioneService.prenotazione.service_id, this.prenotazioneService.prenotazione.staff_id, selectedDate).subscribe(
       data => {
         this.timeGrid = data
         this.timeGrid = this.timeGrid.data
@@ -61,13 +84,14 @@ export class DatatimeSectionComponent implements OnInit {
 
   onTimeSelect(event: Event): void {
     const target = event.target as HTMLInputElement;
+    this.prenotazioneService.selectedTime = target.value;
     this.selectedTime = target.value;
-
+    this.IsSelectedTime.emit(this.selectedTime)
     // Log current selected time
     console.log('Current value:', JSON.stringify(target.value));
 
     // Call the setEndTime function to calculate the end time
-    this.prenotazioneService.prenotazione.start_date = this.formattedSelectedDate + " " + this.selectedTime
+    // this.prenotazioneService.prenotazione.start_date = this.formattedSelectedDate + " " + this.prenotazioneService.selectedTime
     // Log the updated end time
   }
 

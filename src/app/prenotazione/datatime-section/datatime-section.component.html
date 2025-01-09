@@ -6,8 +6,8 @@
 </div>
 <!-- TIMEGRID -->
 @if (loadedTimeGrid){
-<ion-list [formGroup]="formGroup">
-  <ion-radio-group style="display: flex; flex-wrap: wrap; justify-content: center;" (ionChange)="onTimeSelect($event)">
+<ion-list >
+  <ion-radio-group [(ngModel)]="selectedTime" style="display: flex; flex-wrap: wrap; justify-content: center;" (ionChange)="onTimeSelect($event)">
     @for (time of timeGrid; track $index) {
     <ion-item style="width: 45%; margin-right: auto; ">
       <ion-radio [ngStyle]="{ 'text-decoration': time.free === 'N' ? 'line-through' : 'none' }" [disabled]="time.free === 'N'" [value]="time.start_time">{{ time.start_time}}</ion-radio>

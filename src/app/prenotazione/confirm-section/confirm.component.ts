@@ -22,13 +22,13 @@ export class ConfirmComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.prenotazioneService.prenotazione.start_date = this.prenotazioneService.formattedSelectedDate + ' ' + this.prenotazioneService.selectedTime
     this.prenotazione = this.prenotazioneService.prenotazione
     console.log(this.prenotazione)
   }
 
   submitAppointment() {
     this.isLoadingSubmit = true;
-    console.log(this.prenotazione)
     this.prenotazioneService.createAppointment(this.prenotazione).subscribe({
       next: (response) => {
         // Successo: Mostra un messaggio di conferma

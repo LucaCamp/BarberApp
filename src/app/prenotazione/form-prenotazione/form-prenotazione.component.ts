@@ -12,10 +12,19 @@ import { PrenotazioneService } from '../prenotazione.service';
 })
 
 export class FormPrenotazioneComponent implements OnInit {
+
+  IsSelectedTime(radioTime: any) {
+    if (radioTime) {
+      this.isRadioTimeValid = true;
+    } else {
+      this.isRadioTimeValid = false;
+    }
+  }
+
+  isRadioTimeValid = false;
   currentSection: number = 1;
   prenotazioneForm: RxFormGroup;
   timeGrid: any
-  formattedSelectedDate: any
   endTime: string = '';
   loadedTimeGrid: boolean = true;
   invalidForm: boolean = false;
@@ -40,7 +49,7 @@ export class FormPrenotazioneComponent implements OnInit {
 
   goBack() {
     if (this.currentSection > 1) {
-      this.currentSection -= 1
+      this.currentSection -= 1;
     } else if (this.currentSection === 1) {
       this.router.navigate(['home'])
     }
@@ -49,11 +58,9 @@ export class FormPrenotazioneComponent implements OnInit {
   showNextSection() {
     if (this.currentSection < 4) {
       this.currentSection += 1;
-      console.log(this.prenotazioneService.prenotazione.service_id)
     }
     if (this.currentSection === 4) {
       this.setFullName()
-      this.prenotazioneService.prenotazione = this.prenotazioneService.prenotazione
     }
   }
 
@@ -69,10 +76,13 @@ export class FormPrenotazioneComponent implements OnInit {
         sectionValid = (this.prenotazioneForm.get('service_id')?.valid && this.prenotazioneForm.get('staff_id')?.valid) ?? false;
         break;
       case 2:
-        sectionValid = true
+        sectionValid = (this.prenotazioneForm.get('start_date')?.valid && this.isRadioTimeValid) ?? false;
         break;
       case 3:
-        sectionValid = true
+        sectionValid = ((this.prenotazioneForm.get('first_name')?.valid && 
+        this.prenotazioneForm.get('last_name')?.valid &&
+        this.prenotazioneForm.get('email')?.valid &&
+        this.prenotazioneForm.get('phone')?.valid )?? false )
         break;
       case 4:
         sectionValid = false

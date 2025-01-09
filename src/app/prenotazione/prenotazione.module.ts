@@ -22,6 +22,7 @@ import { PersonalDataSectionComponent } from './personal-data-section/personal-d
     PrenotazioneRoutingModule,
     RxReactiveFormsModule,
     ReactiveFormsModule,
+    FormsModule,
     IonicModule,
   ],
 })
