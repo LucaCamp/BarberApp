@@ -15,7 +15,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
+    
 }
 
 .segment-box {
@@ -27,5 +28,12 @@
 }
 
 .segment-box.active {
-    background-color: #f04141; // Colore rosso per il segmento attivo
+    background-color: #a12020; // Colore rosso per il segmento attivo
+}
+
+.section-title{
+    font-size: 14px;
+    color: #a12020;
+    padding-bottom: 30px;
+     text-align: center;
 }
