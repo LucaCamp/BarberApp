@@ -9,7 +9,7 @@
 <!-- PRIMA SEZIONE FORM -->
 <ion-list class="mt6" [formGroup]="formGroup">
   <ion-item>
-    <ion-select placeholder="Seleziona un servizio" formControlName="service_id">
+    <ion-select placeholder="Seleziona un servizio" formControlName="service_id" (ionChange)="onServiceSelect($event)">
       <ion-select-option value=1>Taglio</ion-select-option>
       <ion-select-option value=2>Barba</ion-select-option>
       <ion-select-option value=3>Shampoo</ion-select-option>

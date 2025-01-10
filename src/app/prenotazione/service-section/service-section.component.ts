@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RxFormGroup } from '@rxweb/reactive-form-validators';
+import { PrenotazioneService } from '../prenotazione.service';
 
 @Component({
   selector: 'app-service-section',
@@ -9,10 +10,13 @@ import { RxFormGroup } from '@rxweb/reactive-form-validators';
 })
 export class ServiceSectionComponent implements OnInit {
   @Input() formGroup!: RxFormGroup;
-  constructor() { }
+  constructor(private prenotazioneService: PrenotazioneService) { }
 
   ngOnInit() {
 
   }
 
+  onServiceSelect(service:any){
+    this.prenotazioneService.selectedTime = undefined
+  }
 }
