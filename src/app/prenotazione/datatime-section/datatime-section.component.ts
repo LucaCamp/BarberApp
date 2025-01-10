@@ -41,7 +41,7 @@ export class DatatimeSectionComponent implements OnInit {
 
     }
 
-    debugger  }
+     }
 
   isWeekday = (dateString: string) => {
     const date = new Date(dateString);

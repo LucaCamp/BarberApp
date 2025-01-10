@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class ConfirmComponent implements OnInit {
   prenotazione: Appointment;
   isLoadingSubmit: boolean = false;
+  date: string | undefined
+  time: string | undefined
 
   constructor(private prenotazioneService: PrenotazioneService,
     private alertController: AlertController,
@@ -24,6 +26,12 @@ export class ConfirmComponent implements OnInit {
   ngOnInit() {
     // this.prenotazioneService.prenotazione.start_date = this.prenotazioneService.formattedSelectedDate + ' ' + this.prenotazioneService.selectedTime
     this.prenotazione = this.prenotazioneService.prenotazione
+    if(this.prenotazioneService.formattedSelectedDate){
+      this.date = this.prenotazioneService.formattedSelectedDate
+    }else{
+      this.date = this.prenotazione.start_date
+    }
+    this.time = this.prenotazioneService.selectedTime
     console.log(this.prenotazione)
   }
 
