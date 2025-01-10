@@ -11,8 +11,9 @@ export class PrenotazioneService {
     timeGridEndpoint = "https://daibarber.it/wp-json/customappointment/v1/get_timegrid"
 
     prenotazione = new Appointment()
-    selectedTime: string | undefined;
-    formattedSelectedDate!: string;
+    selectedTime: any;
+    selectedDate: any
+    formattedSelectedDate!: any;
 
     constructor(private http: HttpClient) {
     }

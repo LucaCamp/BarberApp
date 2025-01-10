@@ -9,34 +9,26 @@ import { PrenotazioneService } from '../prenotazione.service';
   standalone: false
 })
 export class DatatimeSectionComponent implements OnInit {
-  @Input() formGroup!: RxFormGroup;
-  formattedSelectedDate: any
   loadedTimeGrid: boolean = true;
   timeGrid: any
-  selectedTime: any
   @Output()
   IsSelectedTime = new EventEmitter<any>()
 
 
-  constructor(private prenotazioneService: PrenotazioneService,
+  constructor(public prenotazioneService: PrenotazioneService,
     private cd: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
-
-    if (this.prenotazioneService.selectedTime) {
-      this.selectedTime = this.prenotazioneService.selectedTime
-    }
-
-    if (this.prenotazioneService.prenotazione.start_date) {
-      this.formGroup.get('start_date')?.setValue(this.prenotazioneService.prenotazione.start_date)
-      this.getTimeGrid(this.prenotazioneService.prenotazione.start_date)
+    if (this.prenotazioneService.selectedDate) {
+      this.prenotazioneService.formattedSelectedDate = this.convertToYYYYMMDD(this.prenotazioneService.selectedDate)
+      this.getTimeGrid(this.prenotazioneService.formattedSelectedDate)
     } else {
       const today = new Date();
       const isoDate = today.toISOString().split('T')[0];
-      this.formGroup.get('start_date')?.setValue(isoDate)
       const formattedToday = this.convertToYYYYMMDD(today.toISOString());
-      this.formattedSelectedDate = today;
+      this.prenotazioneService.selectedDate = today;
+      this.prenotazioneService.formattedSelectedDate = formattedToday;
       this.getTimeGrid(formattedToday)
 
     }
@@ -56,11 +48,9 @@ export class DatatimeSectionComponent implements OnInit {
 
   onDateChange(event: any) {
     this.loadedTimeGrid = false;
-    const isoDate = event.detail.value;  // Ottieni il valore ISO 8601
-    this.formattedSelectedDate = this.convertToYYYYMMDD(isoDate);  // Formatta la data come 'YYYY-MM-DD'
-    this.getTimeGrid(this.formattedSelectedDate)
-    this.prenotazioneService.formattedSelectedDate = this.formattedSelectedDate
-
+    this.prenotazioneService.selectedDate = event.detail.value
+    this.prenotazioneService.formattedSelectedDate = this.convertToYYYYMMDD(this.prenotazioneService.selectedDate);  // Formatta la data come 'YYYY-MM-DD'
+    this.getTimeGrid(this.prenotazioneService.formattedSelectedDate)
   }
 
   convertToYYYYMMDD(isoString: string): string {
@@ -85,14 +75,10 @@ export class DatatimeSectionComponent implements OnInit {
   onTimeSelect(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.prenotazioneService.selectedTime = target.value;
-    this.selectedTime = target.value;
-    this.IsSelectedTime.emit(this.selectedTime)
+    this.IsSelectedTime.emit(this.prenotazioneService.selectedTime)
     // Log current selected time
     console.log('Current value:', JSON.stringify(target.value));
 
-    // Call the setEndTime function to calculate the end time
-    // this.prenotazioneService.prenotazione.start_date = this.formattedSelectedDate + " " + this.prenotazioneService.selectedTime
-    // Log the updated end time
   }
 
 

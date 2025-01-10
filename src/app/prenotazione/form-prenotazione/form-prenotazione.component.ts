@@ -11,14 +11,8 @@ import { PrenotazioneService } from '../prenotazione.service';
   standalone: false,
 })
 
-export class FormPrenotazioneComponent {
+export class FormPrenotazioneComponent implements OnInit {
 
-  IsSelectedTime(selectedTime: any) {
-    this.isRadioTimeValid = !!selectedTime;  // Imposta il flag come true se è selezionato un orario
-    this.prenotazioneService.selectedTime = selectedTime;  // Aggiorna il servizio con l'orario selezionato
-  }
-
-  isRadioTimeValid = false;
   currentSection: number = 1;
   prenotazioneForm: RxFormGroup;
   timeGrid: any
@@ -33,6 +27,10 @@ export class FormPrenotazioneComponent {
   ) {
     Object.setPrototypeOf(this.prenotazioneService.prenotazione, Appointment.prototype);
     this.prenotazioneForm = <RxFormGroup>this.formBuilder.formGroup(this.prenotazioneService.prenotazione);
+  }
+
+  ngOnInit(): void {
+
   }
   
 
@@ -51,9 +49,6 @@ export class FormPrenotazioneComponent {
   showNextSection() {
     if (this.currentSection < 4) {
       this.currentSection += 1;
-      if(this.prenotazioneService.selectedTime === undefined){
-        this.isRadioTimeValid = false;
-      }
     }
     if (this.currentSection === 4) {
       this.setFullName()
@@ -72,7 +67,7 @@ export class FormPrenotazioneComponent {
         sectionValid = (this.prenotazioneForm.get('service_id')?.valid && this.prenotazioneForm.get('staff_id')?.valid) ?? false;
         break;
       case 2:
-        sectionValid = (this.prenotazioneForm.get('start_date')?.valid && this.isRadioTimeValid ) ?? false;
+        sectionValid = (!!this.prenotazioneService.formattedSelectedDate && !!this.prenotazioneService.selectedTime) ?? false;
         break;
       case 3:
         sectionValid = ((this.prenotazioneForm.get('first_name')?.valid && 
