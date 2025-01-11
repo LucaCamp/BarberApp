@@ -16,7 +16,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    
+    margin-top: -20px;
 }
 
 .segment-box {
@@ -32,6 +32,12 @@
 }
 
 .section-title{
+    font-size: 14px;
+    color: lightgray;
+    padding-bottom: 30px;
+     text-align: center;
+}
+.section-title.active{
     font-size: 14px;
     color: #FF3B30;
     padding-bottom: 30px;

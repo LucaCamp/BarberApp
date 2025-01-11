@@ -10,13 +10,25 @@ import { PrenotazioneService } from '../prenotazione.service';
 })
 export class ServiceSectionComponent implements OnInit {
   @Input() formGroup!: RxFormGroup;
-  constructor(private prenotazioneService: PrenotazioneService) { }
+  selectedServiceId: number | null = null;
+
+  constructor(public prenotazioneService: PrenotazioneService) { }
+
+  services = [
+    { id: 1, name: 'Taglio' , },
+    { id: 2, name: 'Barba' },
+    { id: 3, name: 'Shampoo' }
+  ];
 
   ngOnInit() {
 
   }
 
-  onServiceSelect(service:any){
+  
+  onServiceSelect(serviceId: number) {
     this.prenotazioneService.selectedTime = undefined
+
+    this.selectedServiceId = serviceId;
+    this.formGroup.get('service_id')?.setValue(serviceId); // Imposta il valore nel form
   }
 }

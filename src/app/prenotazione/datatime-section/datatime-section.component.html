@@ -5,17 +5,27 @@
     (ionChange)="onDateChange($event)" [isDateEnabled]="isWeekday" [(ngModel)]="prenotazioneService.formattedSelectedDate"></ion-datetime>
 </div>
 <!-- TIMEGRID -->
-@if (loadedTimeGrid){
-<ion-list >
-  <ion-radio-group [(ngModel)]="this.prenotazioneService.selectedTime" style="display: flex; flex-wrap: wrap; justify-content: center;" (ionChange)="onTimeSelect($event)">
-    @for (time of timeGrid; track $index) {
-    <ion-item style="width: 45%; margin-right: auto; ">
-      <ion-radio [ngStyle]="{ 'text-decoration': time.free === 'N' ? 'line-through' : 'none' }" [disabled]="time.free === 'N'" [value]="time.start_time">{{ time.start_time}}</ion-radio>
-    </ion-item>
+@if (loadedTimeGrid) {
+  <swiper-container class="time-swiper" #timeSwiper [slidesPerView]="4.5" spaceBetween="6"  initialSlide = 9 >
+    @for (time of timeGrid; track time.start_time;let i= $index) {
+      <swiper-slide class="swiper-slide" >
+        <ion-card
+          (click)="onTimeSelect(time.start_time, i)"
+          [class.selected]="time.start_time === this.prenotazioneService.selectedTime"
+          [ngStyle]="{ 'text-decoration': time.free === 'N' ? 'line-through' : 'none' }"
+          [disabled]="time.free === 'N'"
+          class="time-card"
+          >
+          <ion-card-header>
+            <ion-card-title style="font-size: 18px;">{{ time.start_time }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </swiper-slide>
     }
-  </ion-radio-group>
-</ion-list>
-}@else {
-<!-- LOADER -->
-<div style="display: flex; justify-content: center;"><ion-spinner></ion-spinner></div>
+  </swiper-container>
+} @else {
+  <!-- LOADER -->
+  <div style="display: flex; justify-content: center;">
+    <ion-spinner></ion-spinner>
+  </div>
 }

@@ -14,6 +14,7 @@ export class PrenotazioneService {
     selectedTime: any;
     selectedDate: any
     formattedSelectedDate!: any;
+  timeIndex: any;
 
     constructor(private http: HttpClient) {
     }

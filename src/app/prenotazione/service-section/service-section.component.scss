@@ -3,6 +3,21 @@
   display: none;
 }
 
+.card-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+ion-card {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+ion-card.selected {
+  border: 2px solid var(--ion-color-primary);
+  transform: scale(1.05);
+}
+
 /* Quando la modalità scura è attiva */
 @media (prefers-color-scheme: dark) {
   .theme-image {
@@ -13,3 +28,4 @@
     display: block;
   }
 }
+

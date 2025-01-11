@@ -24,6 +24,7 @@ import { PersonalDataSectionComponent } from './personal-data-section/personal-d
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
+    
   ],
 })
 export class PrenotazioneModule { }

@@ -1,25 +1,37 @@
 <!-- LOGO -->
-<div style="display: flex; flex-direction: column; align-items: center; margin-top: 15px; flex-shrink: 1;">
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; flex-shrink: 1;">
   <ion-img class="theme-image" src="assets/logo-daibarber-black.png" alt="Logo"
-    style="width: 150px; height: auto; margin-bottom: 20px; background-color: transparent;"></ion-img>
+    style="width: 150px; height: auto; margin-bottom: 20px;"></ion-img>
   <ion-img class="theme-image-dark" src="assets/logo-daibarber-white.png" alt="Logo"
-    style="width: 150px; height: auto; margin-bottom: 20px; background-color: transparent;"></ion-img>
-  <p style="margin-left: 20px; margin-right: 20px;">Investi il giusto tempo per prenderti cura di te stesso</p>
+    style="width: 150px; height: auto; margin-bottom: 20px;"></ion-img>
+  <p style="margin-left: 20px; margin-right: 20px; font-size: 16px; text-align: center;">
+    Investi il giusto tempo per prenderti cura di te stesso
+  </p>
 </div>
-<!-- PRIMA SEZIONE FORM -->
+
+<!-- SEZIONE SELEZIONE SERVIZIO -->
 <ion-list class="mt6" [formGroup]="formGroup">
-  <ion-item>
-    <ion-select placeholder="Seleziona un servizio" formControlName="service_id" (ionChange)="onServiceSelect($event)">
-      <ion-select-option value=1>Taglio</ion-select-option>
-      <ion-select-option value=2>Barba</ion-select-option>
-      <ion-select-option value=3>Shampoo</ion-select-option>
-    </ion-select>
+  <ion-item lines="none">
+    <div class="card-container">
+      <ion-card
+        *ngFor="let service of services"
+        (click)="onServiceSelect(service.id)"
+        [class.selected]="service.id === this.prenotazioneService.prenotazione.service_id"
+        class="service-card"
+      >
+        <ion-card-header>
+          <ion-card-title class="service-title">{{ service.name }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
   </ion-item>
 </ion-list>
 
+<!-- SEZIONE SELEZIONE PARRUCCHIERE -->
 <ion-list class="mt6" [formGroup]="formGroup">
-  <ion-item>
-    <ion-select placeholder="Seleziona un parrucchiere" formControlName="staff_id">
+  <ion-item lines="none">
+    <ion-label>Seleziona un parrucchiere</ion-label>
+    <ion-select placeholder="Seleziona un parrucchiere" formControlName="staff_id" class="barber-select">
       <ion-select-option value="3">Vincenzo Daì</ion-select-option>
     </ion-select>
   </ion-item>

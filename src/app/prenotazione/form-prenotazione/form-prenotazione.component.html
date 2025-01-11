@@ -1,22 +1,22 @@
 <ion-header>
   <ion-toolbar style="padding-bottom: 10px;">
     <ion-title style="text-align: center; margin-top: 10px; ">Prenota il tuo appuntamento</ion-title>
-    <div class="segment-container">
-      <div class="segment-box" [class.active]="currentSection >= 1">
-        <h5 class="section-title">1.Servizio</h5>
-      </div>
-      <div class="segment-box" [class.active]="currentSection >= 2">
-        <h5 class="section-title">2.Orario</h5>
-      </div>
-      <div class="segment-box" [class.active]="currentSection >= 3">
-        <h5 class="section-title">3.Dettagli</h5>
-      </div>
-      <div class="segment-box" [class.active]="currentSection >= 4">
-        <h5 class="section-title">4.Conferma</h5>
-      </div>
-    </div>
+    
   </ion-toolbar>
-
+  <div class="segment-container">
+    <div class="segment-box" [class.active]="currentSection >= 1">
+      <h5 class="section-title" [class.active]="currentSection >= 1" >1.Servizio</h5>
+    </div>
+    <div class="segment-box" [class.active]="currentSection >= 2">
+      <h5 class="section-title" [class.active]="currentSection >= 2">2.Data</h5>
+    </div>
+    <div class="segment-box" [class.active]="currentSection >= 3">
+      <h5 class="section-title" [class.active]="currentSection >= 3">3.Cliente</h5>
+    </div>
+    <div class="segment-box" [class.active]="currentSection >= 4">
+      <h5 class="section-title" [class.active]="currentSection >= 4">4.Riepilogo</h5>
+    </div>
+  </div>
 </ion-header>
 <ion-content class="ion-padding">
 
