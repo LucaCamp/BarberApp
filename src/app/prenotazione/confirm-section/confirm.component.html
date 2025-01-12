@@ -1,6 +1,6 @@
 <ion-card>
   <ion-card-header style="text-align: center;">
-    <ion-card-title>Riepilogo</ion-card-title>
+    <ion-card-title class="title">Riepilogo</ion-card-title>
     <ion-card-subtitle>Verifica i dati e conferma</ion-card-subtitle>
   </ion-card-header>
 
@@ -9,7 +9,7 @@
       <!-- Nome Completo -->
       <ion-item>
         <ion-label>
-          <h3>Nome Completo</h3>
+          <h3> <ion-icon name="radio-button-on"></ion-icon> Nome Completo</h3>
           <p>{{ this.prenotazione.full_name }}</p>
         </ion-label>
       </ion-item>
@@ -17,13 +17,13 @@
       <!-- Data di Inizio -->
       <ion-item>
         <ion-label>
-          <h3>Data prenotazione</h3>
+          <h3><ion-icon name="radio-button-on"></ion-icon> Data prenotazione</h3>
           <p>{{ this.date }}</p>
         </ion-label>
       </ion-item>
       <ion-item>
         <ion-label>
-          <h3>Ora</h3>
+          <h3> <ion-icon name="radio-button-on"></ion-icon> Ora</h3>
           <p>{{ this.time }}</p>
         </ion-label>
       </ion-item>
@@ -31,7 +31,7 @@
       <!-- Email -->
       <ion-item>
         <ion-label>
-          <h3>Email</h3>
+          <h3><ion-icon name="radio-button-on"></ion-icon> Email</h3>
           <p>{{ this.prenotazione.email }}</p>
         </ion-label>
       </ion-item>
@@ -39,7 +39,7 @@
       <!-- Telefono -->
       <ion-item>
         <ion-label>
-          <h3>Telefono</h3>
+          <h3><ion-icon name="radio-button-on"></ion-icon> Telefono</h3>
           <p>{{ this.prenotazione.phone }}</p>
         </ion-label>
       </ion-item>
@@ -47,18 +47,18 @@
       <!-- Note -->
       <ion-item>
         <ion-label>
-          <h3>Note</h3>
+          <h3> <ion-icon name="radio-button-on"></ion-icon> Note</h3>
           <p>{{ this.prenotazione.notes || 'Nessuna nota aggiunta' }}</p>
         </ion-label>
       </ion-item>
     </ion-list>
 
     <!-- Bottone Prenota -->
-    <div class="mt6 justify-content-center">
+    <div class="justify-content-center">
       @if(isLoadingSubmit){
       <ion-spinner></ion-spinner>
       }@else{
-      <ion-button type="button" (click)="submitAppointment()" style="margin-bottom: 10px; margin-top: 16px; width: 80%;"
+      <ion-button type="button" (click)="submitAppointment()" style="margin-bottom: 10px; width: 80%;"
         color="dark">
         Conferma Prenotazione
       </ion-button>

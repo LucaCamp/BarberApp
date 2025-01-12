@@ -48,3 +48,74 @@
     display: block;
   }
 }
+
+/* Sezione Servizi */
+.service-swiper {
+  margin-top: 20px;
+}
+
+/* Card dei servizi */
+.service-card {
+  width: 160px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+/* Icone all'interno delle card */
+.service-card ion-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* Testo all'interno delle card */
+.service-card ion-card-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Modalità scura */
+@media (prefers-color-scheme: dark) {
+  .service-card {
+    background-color: #333;
+    color: #ffffff;
+  }
+
+  .service-card ion-card-title, .service-card p {
+    color: #ffffff;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;  /* Centratura perfetta */
+  margin-bottom: 40px;      /* Aumentato per dare più spazio in basso */
+  margin-top: 16px;
+}
+
+.prenota-button {
+  width: 80%;               /* Larghezza adeguata */
+  height: 50px;             /* Altezza per un aspetto più moderno */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leggera ombra */
+  font-size: 16px;          /* Font size adeguato */
+  font-weight: bold;        /* Rende il testo più deciso */
+  text-transform: uppercase; /* Testo tutto maiuscolo per più enfasi */
+  color: white;              /* Testo bianco per contrasto */
+  transition: transform 0.2s ease; /* Animazione di click */
+}
+

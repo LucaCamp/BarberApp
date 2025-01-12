@@ -40,7 +40,11 @@ export class ConfirmComponent implements OnInit {
     this.prenotazioneService.createAppointment(this.prenotazione).subscribe({
       next: (response) => {
         // Successo: Mostra un messaggio di conferma
-        this.showConfirmationAlert('Prenotazione confermata', 'La tua prenotazione è stata effettuata con successo.');
+        this.showConfirmationAlert('Prenotazione confermata', 'La tua prenotazione è stata effettuata con successo. Riceverai a breve un email di conferma.')
+        .then(() => {
+          // Dopo la chiusura dell'alert, fai il routing verso la home
+          this.router.navigate(['/home']);
+        });;
         this.isLoadingSubmit = false;
       },
       error: (error) => {

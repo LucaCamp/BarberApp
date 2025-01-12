@@ -17,6 +17,13 @@ export class HomePage {
     {path:'assets/taglio_dai_barber_8.jpg'},
   ];
 
+  services = [
+    { id: 1, name: 'Taglio', price: 12, icon: 'cut-outline' },
+    { id: 2, name: 'Barba', price: 12, icon: 'male-outline' },
+    { id: 3, name: 'Shampoo', price: 12, icon: 'water-outline' },
+    { id: 4, name: 'Pulizia del viso', price: 12, icon: 'happy-outline' }
+  ];
+
   constructor() { }
 
 

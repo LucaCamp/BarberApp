@@ -16,6 +16,8 @@ export class DatatimeSectionComponent implements OnInit, AfterViewInit{
   IsSelectedTime = new EventEmitter<any>()
   @ViewChild('timeSwiper')
   timeSwiper: ElementRef | undefined;
+  timeGridError: boolean = false;
+
     constructor(public prenotazioneService: PrenotazioneService,
     private cd: ChangeDetectorRef,
   ) { }
@@ -78,6 +80,7 @@ export class DatatimeSectionComponent implements OnInit, AfterViewInit{
   }
 
   getTimeGrid(selectedDate: string) {
+    this.timeGridError = false;
     this.loadedTimeGrid = false;
     this.prenotazioneService.getTimeGrid(this.prenotazioneService.prenotazione.service_id, this.prenotazioneService.prenotazione.staff_id, selectedDate).subscribe(
       data => {
@@ -93,6 +96,13 @@ export class DatatimeSectionComponent implements OnInit, AfterViewInit{
         }else{
           console.error("si è verificato un errore durante il caricamento dello swiper")
         }
+        },
+        (      error: any) => {
+          // Se si verifica un errore
+          console.error('Errore durante il caricamento della griglia degli orari:', error);
+          this.loadedTimeGrid = true;
+          this.timeGridError = true; // Imposta il flag di errore
+          this.timeGrid = []; // In caso di errore, assicuriamoci che la griglia sia vuota
         }
       )
       

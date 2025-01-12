@@ -5,6 +5,7 @@
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
   height: 40px;
+  width: 100px;
 }
 
 .time-card.selected {
@@ -19,7 +20,6 @@
 }
 
 .time-swiper {
-  margin-top: 10px;
-  height: 50px;
+  height: 60px;
   width: 90%;
 }
