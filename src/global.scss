@@ -37,22 +37,22 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 :root {
-  --ion-color-primary: #FF3B30;        /* Colore principale */
+  --ion-color-primary: #c5000f;        /* Colore principale */
   --ion-color-primary-rgb: 255, 0, 0; /* Colore in RGB */
   --ion-color-primary-contrast: #ffffff; /* Colore del testo contrastante */
-  --ion-color-primary-shade: #d10000; /* Colore più scuro */
-  --ion-color-primary-tint: #ff3333;  /* Colore più chiaro */
+  --ion-color-primary-shade: #c5000f; /* Colore più scuro */
+  --ion-color-primary-tint: #c5000f;  /* Colore più chiaro */
 
   /* Colore per il radio button */
-  --ion-color-radio-checked: #FF3B30;    /* Colore del cerchio selezionato */
+  --ion-color-radio-checked: #c5000f;    /* Colore del cerchio selezionato */
   --ion-color-radio-checked-contrast: #ffffff; /* Colore contrastante (spunta) */
   --ion-color-radio-checked-rgb: 255, 0, 0;  /* RGB del colore rosso */
 
   /* Colore del bordo dei radio button */
-  --ion-color-radio-border: #FF3B30;     /* Colore del bordo del radio button */
+  --ion-color-radio-border: #c5000f;     /* Colore del bordo del radio button */
 
   /* Colore per l'hover (passaggio del mouse) */
-  --ion-color-radio-hover: #ff6666;  /* Colore dell'hover per il radio button */
+  --ion-color-radio-hover: #c5000f;  /* Colore dell'hover per il radio button */
 }
 
 :root {
@@ -62,26 +62,11 @@
     --chip-text-dark: #ffffff;        /* Colore del testo per il tema scuro */
   }
   
-  .theme-chip {
-    --background: var(--chip-background-light); /* Imposta il background per il tema chiaro */
-    --color: var(--chip-text-light);             /* Imposta il colore del testo per il tema chiaro */
-  }
   
   /* Tema scuro */
   @media (prefers-color-scheme: dark) {
     .theme-chip {
       --background: var(--chip-background-dark); /* Imposta il background per il tema scuro */
       --color: var(--chip-text-dark);             /* Imposta il colore del testo per il tema scuro */
-    }
-  }
-
-  .custom-toolbar {
-    --background: var(--chip-background-light);
-    border-top: 2px solid #FF3B30;
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    .custom-toolbar {
-      --background: var(--chip-background-dark);
     }
   }

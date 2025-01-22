@@ -1,7 +1,7 @@
 
 <!-- CALENDAR -->
 <div style="text-align: center; ">
-  <h3 style="font-size: 18px; color: #333; ">Seleziona una data</h3>
+  <h3>Seleziona una data</h3>
   <div style="display: flex; justify-content: center; margin-top: 10px;">
     <ion-datetime picker-format="YYYY-MM-DD" presentation="date"
       (ionChange)="onDateChange($event)" [isDateEnabled]="isWeekday" [(ngModel)]="prenotazioneService.formattedSelectedDate">
@@ -10,13 +10,12 @@
 </div>
 <!-- TIMEGRID -->
 <div style="text-align: center;">
-  <h3 style="font-size: 18px; color: #333; margin-bottom: 10px;">Seleziona un orario</h3></div>
-  @if (timeGridError){
-Non sono stati trovati orari disponibili per questa giornata
- }
-
+  <h3>Seleziona un orario</h3></div>
+  
 @if (loadedTimeGrid) {
-  <swiper-container class="time-swiper" #timeSwiper [slidesPerView]="2.5" >
+  <swiper-container class="time-swiper" #timeSwiper [slidesPerView]="2.5" [speed]="150" 
+    [touchRatio]="1.9"
+    [resistanceRatio]="0.3" >
     @for (time of timeGrid; track time.start_time;let i= $index) {
       <swiper-slide class="swiper-slide" >
         <ion-card

@@ -6,3 +6,56 @@
 ion-label{
 margin: 0;
 }
+
+.card-header {
+  text-align: center;
+  padding: 20px;
+}
+
+
+.subtitle {
+  font-size: 1rem;
+}
+
+.ion-list {
+  margin-bottom: 20px;
+}
+
+.item-inline {
+  display: flex;
+  justify-content: space-between;
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
+  margin-bottom: 16px;
+}
+
+.item {
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
+  margin-bottom: 16px;
+}
+
+.item-label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.item-content {
+  margin-top: 4px;
+  font-size: 1rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.submit-button{
+  text-transform: none;
+}

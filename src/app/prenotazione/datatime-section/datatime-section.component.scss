@@ -9,7 +9,7 @@
 }
 
 .time-card.selected {
-  border: 2px solid var(--ion-color-primary);
+  border: 2px solid var(--ion-color-danger);
   transform: scale(1.05);
   font-size: 14px;
 }
@@ -20,6 +20,6 @@
 }
 
 .time-swiper {
-  height: 60px;
+  height: 80px;
   width: 90%;
 }

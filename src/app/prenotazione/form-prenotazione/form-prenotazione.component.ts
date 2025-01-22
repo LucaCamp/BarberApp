@@ -3,7 +3,7 @@ import { Route, Router, RouterLink } from '@angular/router';
 import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import { Appointment } from 'src/app/model/appointment.model';
 import { PrenotazioneService } from '../prenotazione.service';
-
+import { Keyboard } from '@capacitor/keyboard';
 @Component({
   selector: 'app-form-prenotazione',
   templateUrl: './form-prenotazione.component.html',
@@ -12,7 +12,7 @@ import { PrenotazioneService } from '../prenotazione.service';
 })
 
 export class FormPrenotazioneComponent implements OnInit {
-
+  isKeyboardOpen = false; // Variabile per monitorare lo stato della tastiera
   currentSection: number = 1;
   prenotazioneForm: RxFormGroup;
   timeGrid: any
@@ -30,8 +30,17 @@ export class FormPrenotazioneComponent implements OnInit {
   }
 
   ngOnInit(): void {
+// Ascolta l'evento di apertura della tastiera
+Keyboard.addListener('keyboardWillShow', () => {
+  this.isKeyboardOpen = true;
+});
 
-  }
+// Ascolta l'evento di chiusura della tastiera
+Keyboard.addListener('keyboardWillHide', () => {
+  this.isKeyboardOpen = false;
+});
+}
+ 
   
 
   setFullName() {

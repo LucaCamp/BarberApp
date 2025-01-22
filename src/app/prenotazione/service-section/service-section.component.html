@@ -1,4 +1,4 @@
-<!-- LOGO -->
+<!-- LOGO 
 <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; flex-shrink: 1;">
   <ion-img class="theme-image" src="assets/logo-daibarber-black.png" alt="Logo"
     style="width: 120px; height: auto; margin-bottom: 20px;"></ion-img>
@@ -7,11 +7,11 @@
   <p style="margin-left: 20px; margin-right: 20px; margin-top:-10px; font-size: 12px; text-align: center; color: lightgray;">
     Investi il giusto tempo per prenderti cura di te stesso
   </p>
-</div>
+</div>-->
 
 <!-- SEZIONE SELEZIONE SERVIZIO -->
-<h3 style="font-size: 18px; color: #333; ">Servizi</h3>
-<ion-list class="mt6" [formGroup]="formGroup">
+<h3 style="text-align: center;" >Servizi</h3>
+<ion-list  [formGroup]="formGroup">
   <ion-item lines="none">
     <div class="card-container">
       <ion-card
@@ -26,7 +26,7 @@
             </ion-card-title>
         </ion-card-header>
         <p style="color: #737373; margin-top: -12px; text-align: center;">{{ service.name }}</p>
-        <p style="color: #737373; margin-top: -12px; text-align: center;">{{ service.price }}</p>
+        <p style="color: #737373; margin-top: -14px; text-align: center;">{{ service.price }}</p>
       </ion-card>
     </div>
   </ion-item>
@@ -42,8 +42,8 @@
   </ion-item>
 </ion-list> -->
 
-<h3 style="font-size: 18px; color: #333; ">Il tuo barbiere</h3>
-<ion-list class="mt6" [formGroup]="formGroup">
+<h3 style="text-align: center;" >Il tuo barbiere</h3>
+<ion-list  [formGroup]="formGroup">
   <ion-item lines="none">
     <div class="card-container">
       <ion-card
@@ -57,7 +57,7 @@
             <ion-icon name="person"></ion-icon>
           </ion-card-title>
         </ion-card-header>
-<p style="color: #737373; margin-top: -10px; text-align: center;">{{ barber.name }}</p>
+<p style="color: #737373; margin-top: -14px; text-align: center;">{{ barber.name }}</p>
       </ion-card>
     </div>
   </ion-item>

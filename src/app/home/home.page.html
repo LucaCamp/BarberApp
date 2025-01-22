@@ -1,18 +1,16 @@
 <ion-content [fullscreen]="true">
   <div id="container"
-    style="margin-left: 20px; margin-right: 20px; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+    >
 
     <!-- Sezione del logo -->
-    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 15px; flex-shrink: 1;">
       <ion-img class="theme-image" src="assets/logo-daibarber-black.png" alt="Logo"
-        style="width: 150px; height: auto; margin-bottom: 20px; background-color: transparent;"></ion-img>
+        style="width: 200px; height: auto; margin-bottom: 20px; background-color: transparent;"></ion-img>
       <ion-img class="theme-image-dark" src="assets/logo-daibarber-white.png" alt="Logo"
-        style="width: 150px; height: auto; margin-bottom: 20px; background-color: transparent;"></ion-img>
+        style="width: 200px; height: auto; margin-bottom: 20px; background-color: transparent;"></ion-img>
       <p style="margin-left: 20px; margin-right: 20px;">Investi il giusto tempo per prenderti cura di te stesso</p>
-    </div>
 
     <!-- Sezione Galleria -->
-    <div class="card-container">
+    <!-- <div class="card-container">
       <h3 class="section-title">Galleria</h3>
       <swiper-container class="service-swiper" [slidesPerView]="1.7" [spaceBetween]="10"  autoplay-disable-on-interaction="false">
         @for (image of images; track image) { <swiper-slide class='swiper-slide'><ion-card
@@ -23,23 +21,24 @@
 
     </div>
 
-    <!-- Sezione Servizi -->
-<div class="servizi-container" style="margin-top: 40px;">
+     Sezione Servizi 
+<div class="servizi-container">
   <h3 class="section-title">Servizi</h3>
   <swiper-container class="service-swiper" [slidesPerView]="2" spaceBetween="10" autoplay-disable-on-interaction="false">
     @for (service of services; track $index) {
       <swiper-slide>
         <ion-card class="service-card" >
-          <ion-icon [name]="service.icon" style="font-size: 30px;"></ion-icon>
-          <ion-card-header>
-            <ion-card-title>{{ service.name }}</ion-card-title>
+          <ion-card-header >
+            <ion-card-title>{{ service.name }}
+            </ion-card-title>
             <p>{{ service.price }}€</p>
+            <p> <ion-icon [name]="service.icon" style="font-size: 30px;"></ion-icon></p>
           </ion-card-header>
         </ion-card>
       </swiper-slide>
     }
   </swiper-container>
-</div>
+</div> -->
 
     <!-- Bottone Prenota -->
 <div class="button-container">

@@ -18,7 +18,8 @@ export class ServiceSectionComponent implements OnInit {
   services = [
     { id: 1, name: 'Taglio' , price: '12€'},
     { id: 2, name: 'Barba', price: '5€' },
-    { id: 3, name: 'Shampoo', price: '4,5€' }
+    { id: 3, name: 'Shampoo', price: '4,5€' },
+    { id: 4, name: 'Pulizia del Viso', price: '12€' }
   ];
 
 // Lista dei parrucchieri

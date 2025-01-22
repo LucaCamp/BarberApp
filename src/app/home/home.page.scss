@@ -5,28 +5,17 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 100%;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
 }
 
 .service-swiper {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .swiper-slide {
@@ -51,13 +40,13 @@
 
 /* Sezione Servizi */
 .service-swiper {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 /* Card dei servizi */
 .service-card {
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,20 +91,17 @@
 }
 
 .button-container {
+  width: 95%;
   display: flex;
   justify-content: center;  /* Centratura perfetta */
-  margin-bottom: 40px;      /* Aumentato per dare più spazio in basso */
-  margin-top: 16px;
+margin-top: 50px;  
 }
 
 .prenota-button {
   width: 80%;               /* Larghezza adeguata */
   height: 50px;             /* Altezza per un aspetto più moderno */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leggera ombra */
-  font-size: 16px;          /* Font size adeguato */
-  font-weight: bold;        /* Rende il testo più deciso */
-  text-transform: uppercase; /* Testo tutto maiuscolo per più enfasi */
-  color: white;              /* Testo bianco per contrasto */
   transition: transform 0.2s ease; /* Animazione di click */
+  text-transform: none;
+
 }
 

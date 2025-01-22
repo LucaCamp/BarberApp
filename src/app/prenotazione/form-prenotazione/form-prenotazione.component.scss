@@ -22,24 +22,30 @@
 .segment-box {
     width: 30%;
     height: 10px;
-    background-color: lightgray; // Colore predefinito per i segmenti inattivi
+    background-color: #d8dade; // Colore predefinito per i segmenti inattivi
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    margin-right: 2px;
+
 }
 
 .segment-box.active {
-    background-color: #FF3B30; // Colore rosso per il segmento attivo
+    background-color: #ad000d; // Colore rosso per il segmento attivo
+    margin-right: 2px;
+
 }
 
 .section-title{
     font-size: 14px;
-    color: lightgray;
+    color: #d8dade;
     padding-bottom: 30px;
-     text-align: center;
+    text-align: center;
+    margin-right: 2px;
 }
 .section-title.active{
+    margin-right: 2px;
     font-size: 14px;
-    color: #FF3B30;
+    color: #ad000d;
     padding-bottom: 30px;
      text-align: center;
 }
