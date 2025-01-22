@@ -15,6 +15,7 @@ export class ConfirmComponent implements OnInit {
   isLoadingSubmit: boolean = false;
   date: string | undefined
   time: string | undefined
+  isCheckboxChecked = false;
 
   constructor(private prenotazioneService: PrenotazioneService,
     private alertController: AlertController,
@@ -35,6 +36,10 @@ export class ConfirmComponent implements OnInit {
     console.log(this.prenotazione)
   }
 
+  onCheckboxChange(event: any) {
+    this.isCheckboxChecked = event.detail.checked; // Aggiorna lo stato del checkbox
+  }
+  
   submitAppointment() {
     this.isLoadingSubmit = true;
     this.prenotazioneService.createAppointment(this.prenotazione).subscribe({

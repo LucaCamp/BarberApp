@@ -4,6 +4,7 @@
   <h3>Seleziona una data</h3>
   <div style="display: flex; justify-content: center; margin-top: 10px;">
     <ion-datetime picker-format="YYYY-MM-DD" presentation="date"
+    
       (ionChange)="onDateChange($event)" [isDateEnabled]="isWeekday" [(ngModel)]="prenotazioneService.formattedSelectedDate">
     </ion-datetime>
   </div>

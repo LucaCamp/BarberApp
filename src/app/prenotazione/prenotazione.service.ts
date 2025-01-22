@@ -9,12 +9,15 @@ import { catchError, tap, throwError } from 'rxjs';
 export class PrenotazioneService {
     appEndpoint = "https://daibarber.it/wp-json/customappointment/v1/create_app"
     timeGridEndpoint = "https://daibarber.it/wp-json/customappointment/v1/get_timegrid"
+    servicesEndpoint = "https://daibarber.it/wp-json/customappointment/v1/get_services";
+    staffEndpoint = "https://daibarber.it/wp-json/customappointment/v1/get_staff";
+
 
     prenotazione = new Appointment()
     selectedTime: any;
     selectedDate: any
     formattedSelectedDate!: any;
-  timeIndex: any;
+    timeIndex: any;
 
     constructor(private http: HttpClient) {
     }
@@ -41,6 +44,7 @@ export class PrenotazioneService {
                     switch (responseData.status) {
                         case 200:
                             console.log('Prenotazione confermata');
+                            this.selectedTime = undefined;
                             break;
                         case 201:
                             console.log('Prenotazione confermata');
@@ -67,5 +71,32 @@ export class PrenotazioneService {
                 })
             );
     }
-}
+
+
+    getServices() {
+        return this.http.get(this.servicesEndpoint).pipe(
+          tap((services) => {
+            console.log('Servizi caricati:', services);
+          }),
+          catchError((err: HttpErrorResponse) => {
+            console.log('Errore durante il caricamento dei servizi', err);
+            return throwError(() => new Error('Errore nel caricamento dei servizi'));
+          })
+        );
+      }
+    
+      // Recupera i membri dello staff dal server
+      getStaff() {
+        return this.http.get(this.staffEndpoint).pipe(
+          tap((staff) => {
+            console.log('Staff caricato:', staff);
+          }),
+          catchError((err: HttpErrorResponse) => {
+            console.log('Errore durante il caricamento dello staff', err);
+            return throwError(() => new Error('Errore nel caricamento dello staff'));
+          })
+        );
+      }
+    }
+
 

@@ -11,6 +11,9 @@
 
 <!-- SEZIONE SELEZIONE SERVIZIO -->
 <h3 style="text-align: center;" >Servizi</h3>
+@if(isLoadingServices) {
+  <div style="display: flex; justify-content: center;"><ion-spinner></ion-spinner></div>
+  } @else{
 <ion-list  [formGroup]="formGroup">
   <ion-item lines="none">
     <div class="card-container">
@@ -25,12 +28,13 @@
             <ion-icon name="cut-outline"></ion-icon>
             </ion-card-title>
         </ion-card-header>
-        <p style="color: #737373; margin-top: -12px; text-align: center;">{{ service.name }}</p>
-        <p style="color: #737373; margin-top: -14px; text-align: center;">{{ service.price }}</p>
+        <p style="color: #737373; margin-top: -16px; text-align: center;">{{ service.title }}</p>
+        <p style="color: #737373; margin-top: -16px; text-align: center;">{{ service.price }}</p>
       </ion-card>
     </div>
   </ion-item>
 </ion-list>
+  }
 
 <!-- SEZIONE SELEZIONE PARRUCCHIERE
 <ion-list class="mt6" [formGroup]="formGroup">
@@ -43,6 +47,9 @@
 </ion-list> -->
 
 <h3 style="text-align: center;" >Il tuo barbiere</h3>
+@if(isLoadingBarbers) {
+  <div style="display: flex; justify-content: center;"><ion-spinner></ion-spinner></div>
+  } @else{
 <ion-list  [formGroup]="formGroup">
   <ion-item lines="none">
     <div class="card-container">
@@ -57,8 +64,9 @@
             <ion-icon name="person"></ion-icon>
           </ion-card-title>
         </ion-card-header>
-<p style="color: #737373; margin-top: -14px; text-align: center;">{{ barber.name }}</p>
+<p style="color: #737373; margin-top: -14px; text-align: center;">{{ barber.full_name }}</p>
       </ion-card>
     </div>
   </ion-item>
 </ion-list>
+  }

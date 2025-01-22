@@ -17,10 +17,14 @@ export class DatatimeSectionComponent implements OnInit, AfterViewInit{
   @ViewChild('timeSwiper')
   timeSwiper: ElementRef | undefined;
   timeGridError: boolean = false;
+  minDate: string;
 
     constructor(public prenotazioneService: PrenotazioneService,
     private cd: ChangeDetectorRef,
-  ) { }
+  ) { 
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0]; // Ottieni la data in formato ISO senza l'ora
+  }
 
   ngAfterViewInit() {
 

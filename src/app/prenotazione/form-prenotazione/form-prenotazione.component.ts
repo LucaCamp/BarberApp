@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnChanges, OnInit, } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnChanges, OnInit, } from '@angular/core';
 import { Route, Router, RouterLink } from '@angular/router';
 import { RxFormBuilder, RxFormGroup } from '@rxweb/reactive-form-validators';
 import { Appointment } from 'src/app/model/appointment.model';
@@ -11,7 +11,7 @@ import { Keyboard } from '@capacitor/keyboard';
   standalone: false,
 })
 
-export class FormPrenotazioneComponent implements OnInit {
+export class FormPrenotazioneComponent implements OnInit, AfterViewInit {
   isKeyboardOpen = false; // Variabile per monitorare lo stato della tastiera
   currentSection: number = 1;
   prenotazioneForm: RxFormGroup;
@@ -27,6 +27,9 @@ export class FormPrenotazioneComponent implements OnInit {
   ) {
     Object.setPrototypeOf(this.prenotazioneService.prenotazione, Appointment.prototype);
     this.prenotazioneForm = <RxFormGroup>this.formBuilder.formGroup(this.prenotazioneService.prenotazione);
+  }
+  ngAfterViewInit(): void {
+this.currentSection = 1
   }
 
   ngOnInit(): void {

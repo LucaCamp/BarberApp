@@ -15,20 +15,14 @@ export class ServiceSectionComponent implements OnInit {
 
   constructor(public prenotazioneService: PrenotazioneService) { }
 
-  services = [
-    { id: 1, name: 'Taglio' , price: '12€'},
-    { id: 2, name: 'Barba', price: '5€' },
-    { id: 3, name: 'Shampoo', price: '4,5€' },
-    { id: 4, name: 'Pulizia del Viso', price: '12€' }
-  ];
-
-// Lista dei parrucchieri
-barbers = [
-  { id: 3, name: 'Vincenzo Daì' },
-];
+  services: any[] = [];
+  barbers: any[] = [];
+  isLoadingServices = true;  // Variabile per il caricamento dei servizi
+  isLoadingBarbers = true;   // Variabile per il caricamento dei barbieri
 
   ngOnInit() {
-
+    this.loadServices();
+    this.loadStaff();
   }
 
   
@@ -43,4 +37,33 @@ barbers = [
     this.selectedBarberId = barberId;
     this.formGroup.get('staff_id')?.setValue(barberId); // Imposta il valore nel form
   }
+
+  // Carica i servizi dal servizio
+  loadServices() {
+    this.prenotazioneService.getServices().subscribe({
+      next: (response: any) => {
+        this.services = response.data;
+        this.isLoadingServices = false;  // Imposta false al termine del caricamento
+
+      },
+      error: (error) => {
+        console.error('Errore nel recupero dei servizi', error);
+      }
+    });
+  }
+
+  // Carica lo staff dal servizio
+  loadStaff() {
+    this.prenotazioneService.getStaff().subscribe({
+      next: (response: any) => {
+        this.barbers = response.data;
+        this.isLoadingBarbers = false;  // Imposta false al termine del caricamento
+
+      },
+      error: (error) => {
+        console.error('Errore nel recupero dello staff', error);
+      }
+    });
+  }
 }
+

@@ -51,21 +51,22 @@
           <p class="item-content">{{ this.prenotazione.notes || 'Nessuna nota aggiunta' }}</p>
         </ion-label>
       </ion-item>
+      <ion-checkbox style="padding-right: 10px" (ionChange)="onCheckboxChange($event)"></ion-checkbox>
+      <ion-label>Ho letto e accetto la
+              <a href="https://daibarber.it/privacy-policy/" class="linkText">Privacy Policy</a>
+      </ion-label>
     </ion-list>
 
-    <div style="align-items: center; display: flex">
-      <ion-checkbox style="padding-right: 10px" formControlName="agreementCheckbox"></ion-checkbox>
-          <ion-label>Ho letto e accetto la
-                  <a href="https://daibarber.it/privacy-policy/" class="linkText">Privacy Policy</a>
-          </ion-label>
-  </div>
+    
     
     <!-- Bottone Prenota -->
     <div class="button-container">
+     
+      
       @if(isLoadingSubmit) {
       <ion-spinner></ion-spinner>
       } @else {
-      <ion-button type="button" color="dark" (click)="submitAppointment()" class="submit-button">
+      <ion-button type="button" color="dark" [disabled]="!isCheckboxChecked"  (click)="submitAppointment()" class="submit-button">
         Conferma Prenotazione
       </ion-button>
       }
